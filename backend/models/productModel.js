@@ -64,6 +64,12 @@ const productSchema = new mongoose.Schema({
       }
     }
   ],
+//to know which user(admin) created the product,we'll store usrid of him
+  user:{
+   type:mongoose.Schema.ObjectId,
+   ref:"User",
+   required:true,
+  },
   createdAt:{
     type:Date,
     default:Date.now

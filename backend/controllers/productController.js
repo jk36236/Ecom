@@ -7,6 +7,7 @@ const ApiFeatures = require('../utils/apifeatures');
 //catchAsyncErrors to handle asynchronous errors
 exports.createProduct = catchAsyncErrors(
   async(req,res,next)=>{
+    req.body.user=req.user.id;//assigning usr_id to user of prdtModel in request
     const product= await Product.create(req.body);
     res.status(201).json({
       success:true,

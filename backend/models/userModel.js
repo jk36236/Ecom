@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validator= require('validator');
 const bcrypt=require('bcryptjs');
 const jwt=require("jsonwebtoken");
+const crypto=require("crypto");//built in module
 
 const userSchema= new mongoose.Schema({
 
@@ -39,7 +40,7 @@ const userSchema= new mongoose.Schema({
   // admin h ya user h
   role:{
    type:String,
-   default:"user",
+  default:"user",
 
   },
   resetPasswordToken:String,
@@ -62,13 +63,33 @@ userSchema.pre("save",async function(next){
 //Generating JWT TOKEN
 userSchema.methods.getJWTToken=function(){
     return jwt.sign({id:this._id},process.env.JWT_SECRET,{
-      expiresIn:process.env.JWT_EXPIRE,
+      expiresIn:process.env.JWT_EXPIRE, 
     });
 }
 
-//compare poassword
+//compare possword
 userSchema.methods.comparePassword=async function(enteredPassword){
   return await bcrypt.compare(enteredPassword,this.password);
 }
+
+
+//generating password  reset token
+userSchema.methods.getResetPasswordToken=function(){
+  //generating token
+  const resetToken=crypto.randomBytes(20).toString("hex");
+
+  //hashing and adding resetPasswordToken to userSchema
+  this.resetPasswordToken=crypto
+  .createHash("sha256")
+  .update(resetToken)
+  .digest("hex");
+
+  this.resetPasswordExpire=Date.now() + 15 *60 * 1000;
+
+  return resetToken; //returning normal token string(resetToken) and not hashed one 
+                  //(resetPasswordTokenresetPasswordToken),because url(link of pswd 
+                      //reset) me hashed token thodi bhejenge
+                      
+}  
 
 module.exports=mongoose.model('User',userSchema);
