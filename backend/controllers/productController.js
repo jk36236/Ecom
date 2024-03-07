@@ -102,3 +102,116 @@ exports.deleteProduct = catchAsyncErrors(
   message:"Product deleted successfully"
  });
 });
+
+// ------------CREATE new review or UPDATE the review-------
+
+exports.createProductReview=catchAsyncErrors(
+  async(req,res,next)=>{
+    //destructuring values from request
+    const {rating,comment,productId}=req.body;
+
+    const review={
+      user:req.user._id,
+      name:req.user.name,
+      rating:Number(rating),
+      comment,
+    };
+
+    //find product on which we have to create/update review
+    const product=await Product.findById(productId);
+
+    //check if the user has already given review on the product
+    const isReviewed=product.reviews.find(
+      (rev)=>rev.user.toString() === req.user._id.toString()
+    );
+
+    //if yes,then update the rating and comment with current rating and comment
+    if(isReviewed){
+    product.reviews.forEach((rev)=>{
+      if(rev.user.toString() === req.user._id.toString())
+       ( rev.rating=rating),
+       (rev.comment=comment);
+      
+    });
+    //else create a new review
+    }else{
+      product.reviews.push(review);
+      product.numOfReviews=product.reviews.length;//updating no fo reviews count
+    }
+
+    //updating overall rating(ratings)
+    let avg=0;
+    product.reviews.forEach((rev)=>{
+      avg+=rev.rating;
+    });
+
+    product.ratings=avg/product.reviews.length;
+
+    await product.save({validateBeforeSave:false});
+
+    res.status(200).json({
+      success:true,
+    });
+  }
+);
+
+// -----------------GET ALL REVIEWS OF A PRODUCT------------
+exports.getAllReviews=catchAsyncErrors(
+  async(req,res,next)=>{
+    const product=await Product.findById(req.query.id);//id-product ki h
+
+    if(!product){
+      return next(
+        new ErrorHandler('Product not found',404)
+      );
+    }
+
+    res.status(200).json({
+      success:true,
+      reviews:product.reviews,
+    });
+  }
+);
+
+// ---------------DELETE REVIEW------------------
+exports.deleteReview=catchAsyncErrors(
+  async(req,res,next)=>{
+
+    const product=await Product.findById(req.query.productId);//product id from query
+
+    if(!product){
+      return next(
+        new ErrorHandler('Product not found',404)
+      );
+    }
+
+    //filter reviews which we dont want to delete
+    const reviews=product.reviews.filter((rev)=>rev._id.toString() !== req.query.id);//id-review ki h
+
+    //updating overall rating(ratings), because 1 review got deleted
+    let avg=0;
+    reviews.forEach((rev)=>{
+      avg+=rev.rating;
+    });
+
+    const ratings=avg/reviews.length;
+    const numOfReviews=reviews.length;//updating no of reviews
+
+    //updating the product with new reviews,ratings and numof reviews(1 review deleted)
+    await Product.findByIdAndUpdate(req.query.productId,
+    {//what to update
+      reviews,
+      ratings,
+      numOfReviews,
+    },{
+      //options
+      new:true,
+      runValidators:true,
+      useFindAndModify:false,
+    });
+
+    res.status(200).json({
+      success:true,
+    });
+  }
+);

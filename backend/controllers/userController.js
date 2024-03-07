@@ -167,3 +167,159 @@ exports.resetPassword=catchAsyncErrors(
 
   }
 );
+
+
+//-----------------Get User Profile Details(logged in usr profile)-----------------
+
+exports.getUserDetails=catchAsyncErrors(
+  async(req,res,next)=>{
+   
+    const user=await User.findById(req.user.id);//will always get user,because only loggedin  
+                                                //user can acces this route
+
+    res.status(200).json({
+      success:true,
+      user,
+    });
+  }
+);
+
+
+// ----------------- Update user password----------------------
+exports.updatePassword=catchAsyncErrors(
+  async(req,res,next)=>{
+    const user=await User.findById(req.user.id).select("+password");
+
+    //match the passwords(old pswd entered and pswd in db)
+    const isPasswordMatched=await user.comparePassword(req.body.oldPassword);
+
+
+    if(!isPasswordMatched){
+      return next(
+        new ErrorHandler('Old Password is incorrect',400)
+      );
+    }
+
+    //compare newpswd and confirmpaswd
+    if(req.body.newPassword !== req.body.confirmPassword){
+      return next(
+        new ErrorHandler('Password does not match',400)
+      );
+    }
+
+    //if old paswd matches with paswd in db and newpswd and confirmpswd also matches,now update pswd,save user and generate new token and  save in cookie (i.e. logg in the user)
+    user.password=req.body.newPassword;
+    await user.save();
+    sendToken(user,200,res);//for logging in user
+  }
+);
+
+
+// ----------------- Update user profile----------------------
+exports.updateProfile=catchAsyncErrors(
+  async(req,res,next)=>{
+    const newUserData={
+      name:req.body.name,
+      email:req.body.email,
+    }
+    //pswrd update ke liye alag route h
+    //will add cloudnary latern for avatar update
+
+    //find user by id and update
+    const user=await User.findByIdAndUpdate(req.user.id,newUserData,{
+      new:true,
+      runValidators:true,
+      useFindAndModify:false,
+    });
+    
+    res.status(200).json({
+      success:true,
+    })
+  }
+);
+
+
+// -----------------GET ALL USERS(admin)-------------
+exports.getAllUsers=catchAsyncErrors(
+  async(req,res,next)=>{
+    const users=await User.find();//ye sare users lakar dega
+
+    res.status(200).json({
+      success:true,
+      users,
+    });
+  }
+);
+
+//-----------GET SINGLE USER DETAILS(admin)-----------------
+exports.getSingleUser=catchAsyncErrors(
+  async(req,res,next)=>{
+    const user=await User.findById(req.params.id);
+
+    if(!user){
+      return next(
+        new ErrorHandler(`User does not exists with Id: ${req.params.id}`,400)
+      );
+    }
+
+    res.status(200).json({
+      success:true,
+      user,
+    });
+  }
+);
+
+//-------------------UPDATE USER ROLE(ADMIN)--------------
+exports.updateUserRole=catchAsyncErrors(
+  async(req,res,next)=>{
+    const newUserData={
+      name:req.body.name,
+      email:req.body.email,
+      role:req.body.role,
+    }
+
+    //find user by id and update
+    const user=await User.findByIdAndUpdate(req.params.id,newUserData,{
+      new:true,
+      runValidators:true,
+      useFindAndModify:false,
+    });
+
+    if(!user){
+      return next(
+        new ErrorHandler(`User does not exists with Id: ${req.params.id}`,400)
+      );
+    }
+    
+    res.status(200).json({
+      success:true,
+    });
+  }
+);
+
+
+//------------------- DELETE USER(ADMIN)--------------
+exports.deleteUser=catchAsyncErrors(
+  async(req,res,next)=>{
+    //find user by id 
+    const user=await User.findById(req.params.id);
+
+     //will remove cloudnary later
+
+     
+    if(!user){
+      return next(
+        new ErrorHandler(`User does not exists with Id: ${req.params.id}`,400)
+      );
+    }
+
+    //if got the user, simply remove it
+    await user.remove();
+    
+    res.status(200).json({
+      success:true,
+      message:"User Deleted Successfully",
+    });
+  }
+);
+
