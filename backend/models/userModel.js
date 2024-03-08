@@ -40,7 +40,7 @@ const userSchema= new mongoose.Schema({
   // admin h ya user h
   role:{
    type:String,
-  default:"user",
+  default:"admin",
 
   },
   resetPasswordToken:String,

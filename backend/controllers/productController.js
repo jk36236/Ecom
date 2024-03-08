@@ -186,12 +186,12 @@ exports.deleteReview=catchAsyncErrors(
     }
 
     //filter reviews which we dont want to delete
-    const reviews=product.reviews.filter((rev)=>rev._id.toString() !== req.query.id);//id-review ki h
+    const reviews=product.reviews.filter((rev)=>rev._id.toString() !== req.query.id.toString());//id-review ki h
 
     //updating overall rating(ratings), because 1 review got deleted
     let avg=0;
     reviews.forEach((rev)=>{
-      avg+=rev.rating;
+      avg += rev.rating;
     });
 
     const ratings=avg/reviews.length;

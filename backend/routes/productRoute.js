@@ -20,7 +20,7 @@ router.route('/product/:id').get(getProductDetails);
 router.route('/review').put(isAuthenticatedUser,createProductReview);
 //get all reviews of a product route
 router.route('/reviews').get(getAllReviews);
-//delte a review route
+//delete a review route
 router.route('/reviews').delete(isAuthenticatedUser,deleteReview);
 
 module.exports=router;
