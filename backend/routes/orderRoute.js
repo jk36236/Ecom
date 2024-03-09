@@ -16,8 +16,11 @@ router.route('/orders/me').get(isAuthenticatedUser,myOrders);
 //get all orders---ADMIN
 router.route('/admin/orders').get(isAuthenticatedUser,authorizeRoles("admin"),getAllOrders);
 
+//update order status--ADMIN
+router.route('/admin/order/:id').put(isAuthenticatedUser,authorizeRoles("admin"),updateOrderStatus);
 
-
+//delete order--ADMIN
+router.route('/admin/order/:id').delete(isAuthenticatedUser,authorizeRoles("admin"),deleteOrder);
 
 
 module.exports=router;
