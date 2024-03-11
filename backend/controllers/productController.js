@@ -22,7 +22,8 @@ exports.createProduct = catchAsyncErrors(
 exports.getAllProducts=catchAsyncErrors(
   async(req,res)=>{
     const resultPerPage=5;
-    const productCount= await Product.countDocuments();//maintain vount of prdts
+
+    const productCount= await Product.countDocuments();//maintain count of prdts to show in dashboard on frontend
 
 const apiFeature= new ApiFeatures(Product.find(),req.query)
 .search()
@@ -33,7 +34,8 @@ const apiFeature= new ApiFeatures(Product.find(),req.query)
 
   res.status(200).json({
     success:true,
-    products
+    products,
+    productCount,
   })
 });
 
@@ -51,7 +53,7 @@ if(!product){
 res.status(200).json({
   success:true,
   product,
-  productCount
+  /* productCount */
 }) 
 });
 
@@ -190,11 +192,11 @@ exports.deleteReview=catchAsyncErrors(
 
     //updating overall rating(ratings), because 1 review got deleted
     let avg=0;
-    reviews.forEach((rev)=>{
+    product.reviews.forEach((rev)=>{
       avg += rev.rating;
     });
 
-    const ratings=avg/reviews.length;
+    const ratings= avg / product.reviews.length;
     const numOfReviews=reviews.length;//updating no of reviews
 
     //updating the product with new reviews,ratings and numof reviews(1 review deleted)

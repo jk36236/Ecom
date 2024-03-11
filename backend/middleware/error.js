@@ -12,24 +12,24 @@ if(err.name === "CastError"){
   err=new ErrorHandler(message,400);//400-bad request
 }
 
-//mongoose duplicate key error
+//mongoose duplicate key error[when same usr tries to register again]
 if(err.code === 11000){
-  const message = `Duplicate ${Object.keys(err.KeyValue)} Entered`;
-  console.log(message);
+  const message = `Duplicate ${Object.keys(err.keyValue)} Entered`;
+  // console.log(message);
   err= new ErrorHandler(message,400);
 }
 
 //Wrong JWT error
 if(err.name === "JsonWebTokenError"){
   const message = `Json web Token is invalid,Try again`;
-  console.log(message);
+  // console.log(message);
   err= new ErrorHandler(message,400);
 } 
 
 //JWT Expire error
 if(err.name === "TokenExpiredError"){
   const message = `Json web Token is expired,Try again`;
-  console.log(message);
+  // console.log(message);
   err= new ErrorHandler(message,400);
 } 
 
