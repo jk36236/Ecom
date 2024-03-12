@@ -12,9 +12,9 @@ if(err.name === "CastError"){
   err=new ErrorHandler(message,400);//400-bad request
 }
 
-//mongoose duplicate key error[when same usr tries to register again]
+//mongoose duplicate key error when same usr tries to register again]
 if(err.code === 11000){
-  const message = `Duplicate ${Object.keys(err.keyValue)} Entered`;
+  const message = `Duplicate Key Error.User already exists`;
   // console.log(message);
   err= new ErrorHandler(message,400);
 }
