@@ -1,0 +1,24 @@
+/* ye loading screen h */
+.loading{
+  height:100vh;
+  width: 100vw;
+  background-color: white;
+  display: grid;
+  place-items: center;
+  max-width: 100%;
+}
+
+/* ye loader h */
+.loading > div{
+width: 10vmax;
+height: 10vmax;
+border-bottom: 5px solid rgba(0,0,0,0.719);
+border-radius: 50%;
+animation:loadingRoute 800ms linear infinite;
+}
+
+@keyframes loadingRoute{
+  to{
+    transform: rotateZ(-360deg);
+  }
+}

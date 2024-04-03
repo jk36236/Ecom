@@ -5,55 +5,59 @@ import Product from './Product';
 import MetaData from '../layout/MetaData';
 import { getProduct } from '../../actions/productAction';
 import {useSelector,useDispatch} from 'react-redux';
+import Loader from '../layout/Loader/Loader';
+import {useAlert} from "react-alert";
 
-//temp product object
-const product={
-  name:"Tshirt",
-  images:[{url:"https://i.ibb.co/DRST11n/1.webp"}],
-  price:"3000",
-  _id:"jatin",
-}
 
 const Home = () => {
+  const alert=useAlert();
 
 const dispatch=useDispatch();
+
+const {loading,error,product,productCount}=useSelector(state=>state.products);
+
 //----triggering getProducts actions----
 useEffect(()=>{
+  if(error){
+    return alert.error(error);
+  }
 dispatch(getProduct());
-},[dispatch]);
+},[dispatch,error]);
 
   return (
-    <Fragment>
+   <Fragment>
 
-      <MetaData title="ECOMMERCE" />
-      {/*------------- banner---------- */}
-      <div className="banner">
-        <p>Welcome to Ecommerce</p>
-        <h1>FIND AMAZING PRODUCTS BELOW</h1>
+    {loading ?(
+      <Loader />
+      ):(
+       <Fragment>
 
-        <a href="#container">
-          <button>
-            Scroll <CgMouse />
-          </button>
-        </a>
-      </div>
-{/* ------------Featured Products------------------- */}
-      <h2 className='homeHeading'>Featured Products</h2>
-
-    <div className='container' id='container'>
-      <Product product={product} />
-      {/* jab redux implement karenge vhan se fetch krke denge product ko ,for now lets create a temporary object product */}
-      <Product product={product} />
-      <Product product={product} />
-      <Product product={product} />
-
-      <Product product={product} />
-      <Product product={product} />
-      <Product product={product} />
-      <Product product={product} />
-    </div>
-
-    </Fragment>
+       <MetaData title="ECOMMERCE" />
+       {/*------------- banner---------- */}
+       <div className="banner">
+         <p>Welcome to Ecommerce</p>
+         <h1>FIND AMAZING PRODUCTS BELOW</h1>
+ 
+         <a href="#container">
+           <button>
+             Scroll <CgMouse />
+           </button>
+         </a>
+       </div>
+ {/* ------------Featured Products------------------- */}
+       <h2 className='homeHeading'>Featured Products</h2>
+ 
+     <div className='container' id='container'>
+       {/* if products exists show them using map */}
+       {product && product.map(product=>(
+         <Product product={product} />
+       ))}
+       
+     </div>
+     </Fragment>
+    ) }
+   </Fragment>
+   
   );
 }
 

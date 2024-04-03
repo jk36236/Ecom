@@ -9,6 +9,7 @@ import Home from './component/Home/Home';
 
 
 
+
 function App() {
   //downloading font before page load
   React.useEffect(()=>{
