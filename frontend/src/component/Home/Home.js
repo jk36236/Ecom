@@ -14,7 +14,7 @@ const Home = () => {
 
 const dispatch=useDispatch();
 
-const {loading,error,product,productCount}=useSelector(state=>state.products);
+const {loading,error,products,productsCount}=useSelector(state=>state.products);
 
 //----triggering getProducts actions----
 useEffect(()=>{
@@ -22,7 +22,7 @@ useEffect(()=>{
     return alert.error(error);
   }
 dispatch(getProduct());
-},[dispatch,error]);
+},[dispatch,error,alert]);
 
   return (
    <Fragment>
@@ -49,7 +49,7 @@ dispatch(getProduct());
  
      <div className='container' id='container'>
        {/* if products exists show them using map */}
-       {product && product.map(product=>(
+       {products && products.map(product=>(
          <Product product={product} />
        ))}
        
