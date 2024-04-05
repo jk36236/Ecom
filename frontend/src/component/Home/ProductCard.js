@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 
 
-const Product = ({product}) => {
+const ProductCard = ({product}) => {
   //options for stars
 const options={
   edit:false,//iski vajeh se stars select nhi kr paenge
@@ -28,4 +28,4 @@ const options={
   );
 }
 
-export default Product
+export default ProductCard
