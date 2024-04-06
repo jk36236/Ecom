@@ -28,7 +28,7 @@ dispatch(getProduct());
   return (
    <Fragment>
 
-    {loading ?(
+     {loading?(
       <Loader />
       ):(
        <Fragment>
