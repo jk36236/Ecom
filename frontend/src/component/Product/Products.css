@@ -64,3 +64,25 @@
 .pageLinkActive{
   color: white;
 }
+
+/* -----------filters---------------- */
+
+/* -------price filter------- */
+.filterBox{
+  background-color: yellow;
+  width: 10vmax;
+   position: absolute;
+   top: 10vmax;
+   left: 4vmax; 
+}
+/* media queries for filters */
+@media screen and (max-width:600px){
+  .filterBox{
+    width: 20vmax;
+    position: static;
+    margin: auto;
+  }
+  .page-link{
+    font: 300 1.7vmax "Roboto";
+  }
+}
