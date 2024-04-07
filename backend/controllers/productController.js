@@ -36,6 +36,7 @@ const apiFeature= new ApiFeatures(Product.find(),req.query)
     success:true,
     products,
     productsCount,
+    resultPerPage,
   })
 });
 

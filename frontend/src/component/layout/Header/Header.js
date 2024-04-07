@@ -14,7 +14,7 @@ const options={
    navColor1:"white",
 
    link1Text:"Home",
-   link2Text:"Product",
+   link2Text:"Products",
    link3Text:"Contact",
    link4Text:"About",
 
