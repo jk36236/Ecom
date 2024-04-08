@@ -9,11 +9,23 @@ import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography"
 
+
+const categories=[
+ "Laptop",
+ "Footwear",
+ "Bottom",
+ "Tops",
+ "Attire",
+ "Camera",
+ "SmartPhones",
+];
+
 const Products = ({match}) => {
   const dispatch=useDispatch();
   
   const[currentPage,setCurrentPage]=useState(1);
   const[price,setPrice]=useState([0,25000]);
+  const[category,setCategory]=useState("");
  
   const {products,loading,error,productsCount,resultPerPage,filteredProductsCount} =useSelector(state=>state.products);
 
@@ -29,8 +41,8 @@ const priceHandler=(event,newPrice)=>{
 }
 
   useEffect(()=>{
-   dispatch(getProduct(keyword,currentPage,price));
-  },[dispatch,keyword,currentPage,price]);
+   dispatch(getProduct(keyword,currentPage,price,category));
+  },[dispatch,keyword,currentPage,price,category]);
 
   let count =filteredProductsCount;
 
@@ -49,6 +61,7 @@ const priceHandler=(event,newPrice)=>{
 
           {/* ---------filters---------- */}
           <div className='filterBox'>
+            {/* price */}
             <Typography>Price</Typography>
             <Slider
               value={price}
@@ -58,7 +71,23 @@ const priceHandler=(event,newPrice)=>{
               min={0}
               max={25000}
             />
+
+            {/* categories */}
+            <Typography>Categories</Typography>
+            <ul className="categoryBox">
+              {categories.map((category)=>(
+                <li
+                   className="category-link"
+                   key={category}
+                   onClick={()=>setCategory(category)}
+                >   
+                {category}
+                </li>
+              ))}
+            </ul>
           </div>
+
+
 
           {/* pagination */}
         {/* if resultsperpage < productsCount then only show pagination */}
