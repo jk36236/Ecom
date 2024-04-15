@@ -20,6 +20,7 @@ import ProtectedRoute from './component/Route/ProtectedRoute';
 
 
 
+
 function App() {
 
   const {isAuthenticated,user} =useSelector(state=>state.user);
@@ -46,10 +47,14 @@ function App() {
      <Route path='/product/:id' element={<ProductDetails />} /> 
      <Route path='/products' element={<Products />} /> 
      <Route path='/products/:keyword' element={<Products />} /> 
-     <Route path='/search' element={<Search />} /> 
-     <ProtectedRoute path='/account' element={<Profile />} /> 
+     <Route path='/search' element={<Search />} />
+     <Route path='/login' element={<LoginSignUp />} />
 
-     <Route path="/login" element={<LoginSignUp />} />
+     {/* --------protected routes--------- */}
+     <Route element={<ProtectedRoute />} >
+     <Route path='/account' element={<Profile />}/> 
+     </Route>
+     {/* ---------------------------------- */}
 
      </Routes>
      <Footer />

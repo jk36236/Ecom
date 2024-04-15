@@ -1,7 +1,6 @@
 import React,{Fragment,useEffect} from 'react'
 import MetaData from '../layout/MetaData'
 import {useSelector} from 'react-redux'
-import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader/Loader'
 import {Link,useNavigate} from "react-router-dom"
 import './Profile.css';
@@ -10,7 +9,7 @@ import './Profile.css';
 const Profile = () => {
   const navigate=useNavigate();
 
-  const{user,loading,isAuthenticated}=useSelector(state=>state.user);
+  const{loading,isAuthenticated,user}=useSelector(state=>state.user);
 
 useEffect(()=>{
   if(isAuthenticated === false){
@@ -18,9 +17,10 @@ useEffect(()=>{
   }
 },[navigate,isAuthenticated]);
 
+
   return (
   <Fragment>
-    {loading ? (<Loader/>) :(
+    {loading ? (<Loader />) :(
           <Fragment>
           <MetaData title={`${user.name}'s Profile`} />
           <div className='profileContainer'>
