@@ -231,7 +231,26 @@ exports.updateProfile=catchAsyncErrors(
       email:req.body.email,
     }
     //pswrd update ke liye alag route h
-    //will add cloudnary latern for avatar update
+    // -------------cloudnary ----------
+    if(req.body.avatar !== ""){
+      const user=await User.findById(req.user.id);
+      const imageId=user.avatar.public_id;
+      //destroy old image
+      await cloudinary.v2.uploader.destroy(imageId);
+      const myCloud=await cloudinary.v2.uploader.upload(req.body.avatar,{
+        folder:"avatars",
+        width:150,
+        crop:"scale",
+      });
+
+      //adding avatar details in newUserData
+      newUserData.avatar={
+        public_id:myCloud.public_id,
+        url:myCloud.secure_url,
+      }
+
+    }
+    // ----------------------------------------
 
     //find user by id and update
     const user=await User.findByIdAndUpdate(req.user.id,newUserData,{

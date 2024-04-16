@@ -1,4 +1,6 @@
-import { LOGIN_REQUEST,LOGIN_FAIL,LOGIN_SUCCESS,CLEAR_ERRORS,REGISTER_FAIL,REGISTER_REQUEST,REGISTER_SUCCESS,LOAD_USER_REQUEST,LOAD_USER_SUCCESS,LOAD_USER_FAIL,LOGOUT_FAIL,LOGOUT_SUCCESS } from "../constants/userConstants";
+import { LOGIN_REQUEST,LOGIN_FAIL,LOGIN_SUCCESS,CLEAR_ERRORS,REGISTER_FAIL,REGISTER_REQUEST,REGISTER_SUCCESS,LOAD_USER_REQUEST,LOAD_USER_SUCCESS,LOAD_USER_FAIL,LOGOUT_FAIL,LOGOUT_SUCCESS,
+UPDATE_PROFILE_FAIL,UPDATE_PROFILE_SUCCESS,UPDATE_PROFILE_REQUEST,
+} from "../constants/userConstants";
 import axios from "axios";
 
 //--------------- login----------------
@@ -13,7 +15,7 @@ export const login=(email,password) =>async(dispatch)=>{
       {email,password},
       config,
     );
-    dispatch({type:LOGIN_SUCCESS,payload:data.user});
+    dispatch({type:LOGIN_SUCCESS,payload:data.success});
     
   } catch (error) {
     dispatch({type:LOGIN_FAIL,payload:error.response.data.message});
@@ -64,6 +66,24 @@ export const logout=() =>async(dispatch)=>{
     dispatch({type:LOGOUT_FAIL,payload:error.response.data.message});
   }
 };
+
+
+//----------------- update profile--------------
+export const updateProfile =(userData) => async(dispatch)=>{
+  try {
+    dispatch({type:UPDATE_PROFILE_REQUEST});
+    const config={headers:{"Content-Type":"multipart/form-data"}};
+    const{data}=await axios.put(`/api/v1/me/update`,userData,config);
+  
+    dispatch({type:UPDATE_PROFILE_SUCCESS,payload:data.success});
+    
+  } catch (error) {
+    dispatch({
+      type:UPDATE_PROFILE_FAIL,
+      payload:error.response.data.message,
+    });
+  }
+  };
 
 
 //Clearing errors

@@ -2,13 +2,14 @@ import {createStore,combineReducers,applyMiddleware} from 'redux';
 import {thunk} from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension'; //so that store can use reduxdevtools
 import { productDetailsReducer, productReducer } from './reducers/productReducer';
-import { userReducer } from './reducers/userReducer';
+import { profileReducer, userReducer } from './reducers/userReducer';
 
 
 const reducer=combineReducers({
  products:productReducer,
  productDetails:productDetailsReducer,
  user:userReducer,
+ profile:profileReducer,
 });
 
 let initialState={};
