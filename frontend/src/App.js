@@ -17,6 +17,7 @@ import Profile from './component/User/Profile.js';
 import ProtectedRoute from './component/Route/ProtectedRoute';
 import UpdateProfile from './component/User/UpdateProfile.js';
 import UpdatePassword from './component/User/UpdatePassword';
+import ForgotPassword from './component/User/ForgotPassword';
 
 
 
@@ -51,14 +52,17 @@ function App() {
      <Route path='/search' element={<Search />} />
      <Route path='/login' element={<LoginSignUp />} />
 
+
      {/* --------protected routes--------- */}
      <Route element={<ProtectedRoute />}>
      <Route path='/account' element={<Profile />}/> 
      <Route path='/me/update' element={<UpdateProfile />}/>
      <Route path='/password/update' element={<UpdatePassword />}  />
-
      </Route>
      {/* ---------------------------------- */}
+
+     <Route path='/password/forgot' element={<ForgotPassword />}  />
+
 
      </Routes>
      <Footer />

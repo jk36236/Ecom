@@ -92,7 +92,7 @@ exports.forgotPassword=catchAsyncErrors(
   async(req,res,next)=>{
 
     //get the user
-    const user=await User.findOne({emal:req.body.email});
+    const user=await User.findOne({email:req.body.email});
 
     if(!user){
       return next(new ErrorHandler("User not found",404));
