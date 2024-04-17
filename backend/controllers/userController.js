@@ -226,6 +226,7 @@ exports.updatePassword=catchAsyncErrors(
 // ----------------- Update user profile----------------------
 exports.updateProfile=catchAsyncErrors(
   async(req,res,next)=>{
+    
     const newUserData={
       name:req.body.name,
       email:req.body.email,
@@ -261,7 +262,7 @@ exports.updateProfile=catchAsyncErrors(
     
     res.status(200).json({
       success:true,
-    })
+    });
   }
 );
 

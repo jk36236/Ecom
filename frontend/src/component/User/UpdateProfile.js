@@ -32,11 +32,8 @@ const UpdateProfile = () => {
     myForm.set("name",name);
     myForm.set("email",email);
     myForm.set("avatar",avatar);
-    
-    // console.log("SignUp Form submitted");
-    dispatch(updateProfile(myForm))//userdata is myform
-   
-   }
+    dispatch(updateProfile(myForm));//userdata is myform
+   };
   
   
    const updateProfileDataChange=(e)=>{
@@ -49,31 +46,30 @@ const UpdateProfile = () => {
      };
      //onload function tab call hoga jab isme file add hogi
      reader.readAsDataURL(e.target.files[0]);
-   }
+   };
   
   
   useEffect(()=>{
-
-    if(user){
+    if (user) {
       setName(user.name);
       setEmail(user.email);
       setAvatarPreview(user.avatar.url);
     }
-   if(error){
-    alert.error(error);
-    dispatch(clearErrors());
-   }
-  
-   if(isUpdated){
-    alert.success('Profile Updated Successfully');
-    dispatch(loadUser());//to load fresh data
-    navigate('/account');
+
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (isUpdated) {
+      alert.success("Profile Updated Successfully");
+      dispatch(loadUser());
+      navigate('/account');
 
     dispatch({
       type:UPDATE_PROFILE_RESET,//taki isUpdate false ho jaye
-    })
+    });
    }
-  
   },[dispatch,error,alert,navigate,user,isUpdated]);
 
 
@@ -100,7 +96,7 @@ const UpdateProfile = () => {
         required
         name="name"
         value={name}
-        onChange={(e)=>setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
       />
     </div>
   {/* email */}
@@ -112,7 +108,7 @@ const UpdateProfile = () => {
       required
       name="email"
       value={email}
-      onChange={(e)=>setEmail(e.target.value)}
+      onChange={(e) => setEmail(e.target.value)}
       />
   </div>
   
