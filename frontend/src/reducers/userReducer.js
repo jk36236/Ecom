@@ -1,7 +1,7 @@
 import { LOGIN_REQUEST,LOGIN_FAIL,LOGIN_SUCCESS,CLEAR_ERRORS,REGISTER_FAIL,REGISTER_REQUEST,REGISTER_SUCCESS ,LOAD_USER_REQUEST,LOAD_USER_SUCCESS,LOAD_USER_FAIL,LOGOUT_FAIL,LOGOUT_SUCCESS,
 UPDATE_PROFILE_REQUEST,UPDATE_PROFILE_SUCCESS,UPDATE_PROFILE_RESET,UPDATE_PROFILE_FAIL,
 UPDATE_PASSWORD_FAIL,UPDATE_PASSWORD_REQUEST,UPDATE_PASSWORD_SUCCESS,UPDATE_PASSWORD_RESET,
-FORGOT_PASSWORD_FAIL,FORGOT_PASSWORD_REQUEST,FORGOT_PASSWORD_SUCCESS
+FORGOT_PASSWORD_FAIL,FORGOT_PASSWORD_REQUEST,FORGOT_PASSWORD_SUCCESS,RESET_PASSWORD_FAIL,RESET_PASSWORD_REQUEST,RESET_PASSWORD_SUCCESS
 } from "../constants/userConstants"
 
 // -----------user reducer-------------------------
@@ -120,6 +120,7 @@ export const forgotPasswordReducer=(state={},action)=>{
 
   switch(action.type){
     case FORGOT_PASSWORD_REQUEST:
+      case RESET_PASSWORD_REQUEST:
       return{
         ...state,
         loading:true,
@@ -132,8 +133,17 @@ export const forgotPasswordReducer=(state={},action)=>{
         loading:false,
         message:action.payload,
       }
+    
+      case RESET_PASSWORD_SUCCESS:
+        return{
+          ...state,
+          loading:false,
+          success:action.payload,
+        }
+    
 
      case FORGOT_PASSWORD_FAIL:
+      case RESET_PASSWORD_FAIL:
        return{
         ...state,
         loading:false,
