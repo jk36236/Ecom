@@ -1,7 +1,7 @@
 import React, { Fragment,useRef,useState,useEffect } from 'react'
 import './LoginSignUp.css'
 import Loader from '../layout/Loader/Loader.js'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate,useLocation } from 'react-router-dom'
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
@@ -14,6 +14,7 @@ import {useAlert} from "react-alert";
 const LoginSignUp = () => {
   const navigate=useNavigate();
   const dispatch=useDispatch();
+  const location=useLocation();
   const alert=useAlert();
 
   const {error,loading,isAuthenticated} =useSelector((state)=>state.user);
@@ -75,6 +76,8 @@ const registerSubmit=(e)=>{
   }
  }
 
+const redirect = location.search ? location.search.split("=")[1] : '/account';
+
 
 useEffect(()=>{
  if(error){
@@ -84,10 +87,10 @@ useEffect(()=>{
 
 //  if user is logged in sent him to account page,he should not be able to access login page
  if(isAuthenticated){
-  navigate('/account');
+  navigate(redirect);
  }
 
-},[dispatch,error,alert,isAuthenticated,navigate]);
+},[dispatch,error,alert,isAuthenticated,navigate,redirect]);
 
  
 
