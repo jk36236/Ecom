@@ -1,4 +1,5 @@
 import './App.css';
+import {useState,useEffect} from 'react';
 import Header from './component/layout/Header/Header';
 import {BrowserRouter as Router,Route, Routes} from 'react-router-dom';
 import WebFont from 'webfontloader';
@@ -22,6 +23,11 @@ import ResetPassword from './component/User/ResetPassword';
 import Cart from './component/Cart/Cart';
 import Shipping from './component/Cart/Shipping';
 import ConfirmOrder from './component/Cart/ConfirmOrder';
+import Payment from './component/Cart/Payment';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import axios from 'axios';
+import OrderSuccess from './component/Cart/OrderSuccess';
 
 
 
@@ -31,17 +37,26 @@ import ConfirmOrder from './component/Cart/ConfirmOrder';
 function App() {
 
   const {isAuthenticated,user} =useSelector(state=>state.user);
+  const [stripeApiKey,setStripeApiKey]=useState("");
+
+  //getting stripe api key from backend
+  async function getStripeApiKey(){
+    const {data}=await axios.get('/api/v1/stripeapikey');
+    setStripeApiKey(data.stripeApiKey);
+  }
 
   //downloading font before page load
-  React.useEffect(()=>{
+  useEffect(()=>{
    WebFont.load({
     google:{
     families:["Roboto","Droid Sans","Chilanka"]
     }
+
    });
 
    //setting user in state when site loads
    store.dispatch(loadUser());
+   getStripeApiKey();
   },[]);
 
   return (
@@ -49,6 +64,8 @@ function App() {
      <Header />
 
      {isAuthenticated && <UserOptions user={user}/>}
+
+     
      <Routes>
      <Route path='/' element={<Home />} /> 
      <Route path='/product/:id' element={<ProductDetails />} /> 
@@ -65,6 +82,16 @@ function App() {
      <Route path='/password/update' element={<UpdatePassword />}  />
      <Route path='/shipping' element={<Shipping />} />
      <Route path='/order/confirm' element={<ConfirmOrder/>} />
+     {stripeApiKey && (
+      <Route path='/process/payment' element={
+      <Elements stripe={loadStripe(stripeApiKey)}>
+      <Payment />
+      </Elements>
+      } />
+      
+     )}
+     <Route path='/success' element={<OrderSuccess />} />
+
      </Route>
      {/* ---------------------------------- */}
 

@@ -4,6 +4,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'; //so that store ca
 import { productDetailsReducer, productReducer } from './reducers/productReducer';
 import { forgotPasswordReducer, profileReducer, userReducer } from './reducers/userReducer';
 import { cartReducer } from './reducers/cartReducer';
+import { newOrderReducer } from './reducers/orderReducer';
 
 
 const reducer=combineReducers({
@@ -13,6 +14,7 @@ const reducer=combineReducers({
  profile:profileReducer,
  forgotPassword:forgotPasswordReducer,
  cart:cartReducer,
+ newOrder:newOrderReducer,
 });
 
 //if anything in localstorage set it in cart initialstate otherwise empty
