@@ -11,7 +11,7 @@ const OrderSuccess = () => {
     <div className='orderSuccess'>
       <CheckCircleIcon />
      <Typography>Your Order has been Placed Successfully!</Typography>
-     <Link to='/order/me'>View Orders</Link>
+     <Link to='/orders'>View Orders</Link>
     </div>
   );
 }

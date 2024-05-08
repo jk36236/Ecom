@@ -1,7 +1,7 @@
 import './App.css';
 import {useState,useEffect} from 'react';
 import Header from './component/layout/Header/Header';
-import {BrowserRouter as Router,Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router,Route, Routes,Switch} from 'react-router-dom';
 import WebFont from 'webfontloader';
 import React from 'react';
 import Footer from './component/layout/Footer/Footer';
@@ -28,6 +28,9 @@ import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import axios from 'axios';
 import OrderSuccess from './component/Cart/OrderSuccess';
+import MyOrders from './component/Order/MyOrders';
+import OrderDetails from './component/Order/OrderDetails';
+
 
 
 
@@ -81,7 +84,7 @@ function App() {
      <Route path='/me/update' element={<UpdateProfile />}/>
      <Route path='/password/update' element={<UpdatePassword />}  />
      <Route path='/shipping' element={<Shipping />} />
-     <Route path='/order/confirm' element={<ConfirmOrder/>} />
+   
      {stripeApiKey && (
       <Route path='/process/payment' element={
       <Elements stripe={loadStripe(stripeApiKey)}>
@@ -91,7 +94,13 @@ function App() {
       
      )}
      <Route path='/success' element={<OrderSuccess />} />
-
+     <Route path='/orders' element={<MyOrders />} />
+     {/* used switch so that both routes render 1 by 1 and not ek sath  */}
+     <Switch>
+     <Route path='/order/confirm' element={<ConfirmOrder/>} />
+     <Route path='/orders/:id' element={<OrderDetails />} />
+     </Switch>
+ 
      </Route>
      {/* ---------------------------------- */}
 
