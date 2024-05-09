@@ -51,7 +51,7 @@ dispatch(getProduct());
      <div className='container' id='container'>
        {/* if products exists show them using map */}
        {products && products.map(product=>(
-         <ProductCard product={product} />
+         <ProductCard key={product._id} product={product} />
        ))}
        
      </div>

@@ -4,7 +4,6 @@ import './ProductDetails.css';
 import {useDispatch,useSelector} from "react-redux";
 import { clearErrors, getProductDetails, newReview } from '../../actions/productAction';
 import {useParams} from "react-router-dom";
-import ReactStars from 'react-rating-stars-component';
 import ReviewCard from './ReviewCard.js';
 import Loader from '../layout/Loader/Loader.js';
 import {useAlert} from "react-alert";
@@ -44,12 +43,10 @@ const ProductDetails = () => {
 
 //options for stars
 const options={
-  edit:false,//iski vajeh se stars select nhi kr paenge
-  color:"rgba(20,20,20,0.1)",
-  activeColor:"tomato",//jo select krenge stars unka color
-  size:window.innerWidth<600 ? 20: 25,
+  size:"large",
   value:product.ratings,
-  isHalf:true,
+  readOnly:true,
+  precision:0.5,
 };
 
 //states
@@ -120,8 +117,8 @@ const reviewSubmitHandler=()=>{
             </div>
             {/* ------2nd block-------- */}
             <div className='detailsBlock-2'>
-              <ReactStars {...options} />
-             <span>({product.numOfReviews} Reviews)</span>
+              <Rating {...options} />
+             <span className='detailsBlock-2-span'>({product.numOfReviews} Reviews)</span>
             </div>
            {/* ------3rd block-------- */}
            <div className='detailsBlock-3'>
