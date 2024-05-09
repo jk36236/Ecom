@@ -149,6 +149,20 @@
   transform: scale(1.1);
 }
 
+/* review dialog box */
+.submitDialog{
+   display: flex;
+   flex-direction: column;
+}
+
+.submitDialogTextArea{
+  border:1px solid rgba(0,0,0,0.082);
+  margin: 1vmax 0;
+  outline: none;
+  padding: 1rem;
+  font: 300 1rem "Roboto";
+}
+
 /* reviews */
 .reviewsHeading{
   color: #000000be;

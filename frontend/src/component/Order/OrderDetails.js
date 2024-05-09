@@ -33,8 +33,10 @@ const OrderDetails = () => {
             <MetaData title={'Order Details'} />
             <div className='orderDetailsPage' >
               <div className='orderDetailsContainer'>
+{/* ------------------------------------------------------------ */}
                 <Typography component="h1">Order #{order && order._id}</Typography>
 
+               {/* ------------------------------------------------ */}
                 <Typography>Shipping Info</Typography>
                 <div className='orderDetailsContainerBox'>
                   <div>
@@ -58,6 +60,8 @@ const OrderDetails = () => {
                   </div>
                 </div>
 
+                {/* ------------------------------------------------ */}
+
                 <Typography>Payment</Typography>
                 <div className='orderDetailsContainerBox'>
                   <div>
@@ -77,6 +81,8 @@ const OrderDetails = () => {
                   </div>
                 </div>
 
+                {/* -------------------------------------------------- */}
+
                 <Typography>Order Status</Typography>
                 <div className='orderDetailsContainerBox'>
                   <div>
@@ -90,7 +96,7 @@ const OrderDetails = () => {
                   </div>
                 </div>
               </div>
-
+{/* ------------------------------------------------------------------------------ */}
               <div className='orderDetailsCartItems'>
                 <Typography>Order Items:</Typography>
                 <div className='orderDetailsCartItemsContainer'>
