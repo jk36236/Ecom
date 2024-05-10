@@ -1,7 +1,7 @@
 import './App.css';
 import {useState,useEffect} from 'react';
 import Header from './component/layout/Header/Header';
-import {BrowserRouter as Router,Route, Routes,Switch} from 'react-router-dom';
+import {BrowserRouter as Router,Route, Routes} from 'react-router-dom';
 import WebFont from 'webfontloader';
 import React from 'react';
 import Footer from './component/layout/Footer/Footer';
@@ -59,7 +59,7 @@ function App() {
 
    //setting user in state when site loads
    store.dispatch(loadUser());
-   getStripeApiKey();
+  //  getStripeApiKey();
   },[]);
 
   return (
@@ -92,15 +92,11 @@ function App() {
       </Elements>
       } />
       
-     )}
+     )};
      <Route path='/success' element={<OrderSuccess />} />
      <Route path='/orders' element={<MyOrders />} />
-     {/* used switch so that both routes render 1 by 1 and not ek sath  */}
-     <Switch>
      <Route path='/order/confirm' element={<ConfirmOrder/>} />
-     <Route path='/orders/:id' element={<OrderDetails />} />
-     </Switch>
- 
+     <Route path='/order/:id' element={<OrderDetails />} />
      </Route>
      {/* ---------------------------------- */}
 
