@@ -23,9 +23,10 @@
   color: white;
   cursor: pointer;
   margin: 2vmax;
+  padding: 1vmax 3vmax;
   font: 400 1vmax "Roboto";
   text-decoration: none;
-  border: none;;
+  border: none;
 }
 
 

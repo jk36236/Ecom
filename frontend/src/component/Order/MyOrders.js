@@ -20,16 +20,16 @@ const MyOrders = () => {
 
 
   const columns=[
-    {field:"id", headerName:"Order ID",minWidth:300,flex:1},
-    {field:"status", headerName:"Status",minWidth:150,flex:0.5,
+    {field:"id", headerName:"Order ID",minWidth:300,flex:0.6},
+    {field:"status", headerName:"Status",minWidth:150,flex:0.4,
     //if status is delivered green color else redcolor
     cellClassName:(params)=>{
        return params.getValue(params.id,"status") === "Delivered" ? "greenColor": "redColor";
     },
   },
     {field:"itemsQty",headerName:"Items Qty",type:"number",minWidth:150,flex:0.3},
-    {field:"amount",headerName:"Amount",type:"number",minWidth:270,flex:0.5},
-    {field:"actions",headerName:"Actions",flex:0.3,minWidth:150,type:"number",sortable:false,
+    {field:"amount",headerName:"Amount",type:"number",minWidth:230,flex:0.4},
+    {field:"actions",headerName:"Actions",flex:0.3,minWidth:130,type:"number",sortable:false,
      renderCell:(params)=>{
       return(
      <Link to={`/order/${params.getValue(params.id,"id")}`} >

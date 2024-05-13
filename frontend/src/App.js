@@ -41,7 +41,7 @@ function App() {
 
   const {isAuthenticated,user} =useSelector(state=>state.user);
   const [stripeApiKey,setStripeApiKey]=useState("");
-
+ 
   //getting stripe api key from backend
   async function getStripeApiKey(){
     const {data}=await axios.get('/api/v1/stripeapikey');
@@ -59,7 +59,7 @@ function App() {
 
    //setting user in state when site loads
    store.dispatch(loadUser());
-  //  getStripeApiKey();
+   getStripeApiKey();
   },[]);
 
   return (
@@ -68,6 +68,8 @@ function App() {
 
      {isAuthenticated && <UserOptions user={user}/>}
 
+
+     
      
      <Routes>
      <Route path='/' element={<Home />} /> 
@@ -84,20 +86,21 @@ function App() {
      <Route path='/me/update' element={<UpdateProfile />}/>
      <Route path='/password/update' element={<UpdatePassword />}  />
      <Route path='/shipping' element={<Shipping />} />
-   
-     {stripeApiKey && (
-      <Route path='/process/payment' element={
-      <Elements stripe={loadStripe(stripeApiKey)}>
-      <Payment />
-      </Elements>
-      } />
-      
-     )};
      <Route path='/success' element={<OrderSuccess />} />
      <Route path='/orders' element={<MyOrders />} />
      <Route path='/order/confirm' element={<ConfirmOrder/>} />
      <Route path='/order/:id' element={<OrderDetails />} />
      </Route>
+
+     {stripeApiKey && (
+        <Route path='/process/payment' element={
+          <Elements stripe={loadStripe(stripeApiKey)}> 
+           <Payment />
+           </Elements>
+      } />
+     )};
+     
+
      {/* ---------------------------------- */}
 
      <Route path='/password/forgot' element={<ForgotPassword />}  />

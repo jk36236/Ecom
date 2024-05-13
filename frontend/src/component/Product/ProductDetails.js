@@ -50,7 +50,7 @@ const options={
 };
 
 //states
-const[quantity,setQuantity]=useState(1);
+const [quantity,setQuantity]=useState(1);
 const [open,setOpen]=useState(false);
 const [rating,setRating]=useState(0);
 const [comment,setComment]=useState("");
@@ -129,13 +129,13 @@ const reviewSubmitHandler=()=>{
                     <input readOnly value={quantity} type="number" />
                     <button onClick={increaseQuantity}>+</button>
                    </div>
-                  <button disabled={product.Stock<1 ? true: false} onClick={addToCartHandler}>Add to Cart</button>
+                  <button disabled={product.stock<1 ? true: false} onClick={addToCartHandler}>Add to Cart</button>
                 </div>
   
                 <p>
                   Status:
-                  <b className={product.Stock<1 ?"redColor":"greenColor" }>
-                    {product.Stock<1?"OutOfStock":"InStock"}
+                  <b className={product.stock<1 ? "redColor":"greenColor" }>
+                    {product.stock<1 ? "OutOfStock":"InStock"}
                   </b>
                 </p>
             </div>

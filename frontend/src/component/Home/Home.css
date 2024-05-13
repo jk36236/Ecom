@@ -71,7 +71,7 @@
   max-width: 100%;
 }
 .productCard{
-  width: 14vmax;
+  width: 15vmax;
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -93,7 +93,7 @@
 
 .productCardSpan{
   margin: 0.5vmax;
-  font: 300 0.7vmax "Roboto";
+  font: 300 0.8vmax "Roboto";
 }
 
 .productCard>p{
