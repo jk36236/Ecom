@@ -70,7 +70,7 @@
   }
 
   .myOrdersTable div{
-    font: 300 4vw "Roboto";
+    font: 300 1.4vmax "Roboto";
   }
 
   .MuiDataGrid-columnHeader{
@@ -78,6 +78,6 @@
   }
 
   .MuiDataGrid-columnHeader div{
-    font: 500 5vw "Roboto" !important;
+    font: 500 1.6vmax "Roboto" !important;
   }
 }

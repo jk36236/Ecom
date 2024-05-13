@@ -90,8 +90,6 @@ function App() {
      <Route path='/orders' element={<MyOrders />} />
      <Route path='/order/confirm' element={<ConfirmOrder/>} />
      <Route path='/order/:id' element={<OrderDetails />} />
-     </Route>
-
      {stripeApiKey && (
         <Route path='/process/payment' element={
           <Elements stripe={loadStripe(stripeApiKey)}> 
@@ -99,6 +97,10 @@ function App() {
            </Elements>
       } />
      )};
+
+     </Route>
+
+    
      
 
      {/* ---------------------------------- */}

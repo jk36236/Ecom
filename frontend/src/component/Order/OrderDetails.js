@@ -11,7 +11,7 @@ import { useAlert } from 'react-alert';
 
 const OrderDetails = () => {
 
-  const{order,error,loading} = useSelector((state)=>state.OrderDetails);
+  const {order,error,loading} = useSelector((state)=>state.orderDetails);
   const {id}=useParams();
 
   const dispatch=useDispatch();

@@ -75,6 +75,7 @@ const MyOrders = () => {
            rows={rows}
            columns={columns}
            pageSize={10}
+           rowsPerPageOptions={[10]}
            disableSelectionOnClick
            className='myOrdersTable'
            autoHeight
