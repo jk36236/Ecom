@@ -38,7 +38,7 @@ const UserOptions = ({user}) => {
 
 // functions-which will be called on click of icons
 function dashboard(){
-  navigate("/dashboard");
+  navigate("/admin/dashboard");
 }
 
 function orders(){
