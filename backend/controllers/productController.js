@@ -45,6 +45,19 @@ apiFeature.pagination(resultPerPage);
   })
 });
 
+
+
+//get all products --ADMIN
+exports.getAdminProducts=catchAsyncErrors(
+  async(req,res)=>{
+    const products= await Product.find();
+
+  res.status(200).json({
+    success:true,
+    products,
+  })
+});
+
 //get product details- SINGLE PRODUCT
 exports.getProductDetails= catchAsyncErrors(
   async(req,res,next)=>{

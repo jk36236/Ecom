@@ -31,6 +31,8 @@ import OrderSuccess from './component/Cart/OrderSuccess';
 import MyOrders from './component/Order/MyOrders';
 import OrderDetails from './component/Order/OrderDetails';
 import Dashboard from './component/admin/Dashboard';
+import ProductList from './component/admin/ProductList';
+
 
 
 
@@ -99,7 +101,8 @@ function App() {
       } />
      )};
 
-     <Route path='/admin/dashboard' element={<Dashboard />} />
+     <Route isAdmin={true} path='/admin/dashboard' element={<Dashboard />} />
+     <Route isAdmin={true} path='/admin/products' element={<ProductList />} />
 
      </Route>
 
