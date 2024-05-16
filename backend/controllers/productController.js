@@ -114,6 +114,41 @@ exports.updateProduct= catchAsyncErrors(
   return next(new ErrorHandler("Product not found",404));
 }
 
+//----------------for images -deleting old one and uploading new one------------------------
+let images= [];
+if(typeof req.body.images === "string"){
+  images.push(req.body.images);
+}
+else{
+ images=req.body.images;
+}
+
+//mtlb images h,then delete them from cloudinary
+if(images !== undefined){
+//deleteing images from cloudinary
+for(let i=0;i<product.images.length;i++){
+  await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+}
+
+const imagesLink=[];
+
+ //upload new images on cloudinary
+ for(let i=0;i<images.length;i++){
+  const result=await cloudinary.v2.uploader.upload(images[i],{
+    folder:"products",
+  });
+
+   // storing links of all images inside imagesLink array
+   imagesLink.push({
+    public_id:result.public_id,
+    url:result.secure_url,
+  });
+ }
+
+ req.body.images=imagesLink;
+}
+
+// ----------------------------------------------------------------------------
  //if found update it
  //id,update,options
  product= await Product.findByIdAndUpdate(req.params.id,req.body,{
