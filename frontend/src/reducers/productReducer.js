@@ -7,6 +7,7 @@ import {
   PRODUCT_DETAILS_FAIL,
   NEW_REVIEW_REQUEST,NEW_REVIEW_SUCCESS,NEW_REVIEW_RESET,NEW_REVIEW_FAIL,
   ADMIN_PRODUCT_REQUEST,ADMIN_PRODUCT_SUCCESS,ADMIN_PRODUCT_FAIL,
+  NEW_PRODUCT_REQUEST,NEW_PRODUCT_SUCCESS,NEW_PRODUCT_FAIL,NEW_PRODUCT_RESET,
    CLEAR_ERRORS} from '../constants/productConstants';
 
 
@@ -54,7 +55,45 @@ export const productReducer=(state={products:[]},action)=>{
 
 };
 
+// ----------------NEW PRODUCT reducer
+export const newProductReducer=(state={product :{}},action)=>{
 
+  switch (action.type) {
+    case NEW_PRODUCT_REQUEST :
+      return{
+        loading:true,
+        ...state,
+      };
+      case NEW_PRODUCT_SUCCESS :
+        return{
+          loading:false,
+          success:action.payload.success,
+          product:action.payload.product,
+        };
+
+        case NEW_PRODUCT_FAIL :
+          return{
+            ...state,
+            loading:false,
+            error:action.payload
+          };
+          
+          case NEW_PRODUCT_RESET :
+            return{
+              ...state,
+              success:false,
+            };
+          case CLEAR_ERRORS://erros ko null kr dega
+          return{
+            ...state,
+            error:null
+          };
+
+    default:
+      return state;
+  }
+
+};
 
 // ----------------product details reducer
 export const productDetailsReducer=(state={product:{}},action)=>{

@@ -2,11 +2,40 @@ const Product= require('../models/productModel');
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors= require('../middleware/catchAsyncErrors');
 const ApiFeatures = require('../utils/apifeatures');
+const cloudinary=require('cloudinary');
 
 //create product-ADMIN --CREATE
-//catchAsyncErrors to handle asynchronous errors
 exports.createProduct = catchAsyncErrors(
   async(req,res,next)=>{
+
+ //for images
+ let images= [];
+
+ //mtlb agar 1 he image h(string)
+ if(typeof req.body.images === "string"){
+   images.push(req.body.images);
+ }
+ else{
+//agar poori array h images ki
+  images=req.body.images;
+ }
+
+ const imagesLink=[];
+
+ //upload every single image on cloudinary
+ for(let i=0;i<images.length;i++){
+  const result=await cloudinary.v2.uploader.upload(images[i],{
+    folder:"products",
+  });
+
+  // storing links of all images inside imagesLink array
+  imagesLink.push({
+    public_id:result.public_id,
+    url:result.secure_url,
+  });
+ }
+    
+    req.body.images=imagesLink;
     req.body.user=req.user.id;//assigning usr_id to user of prdtModel in request
     const product= await Product.create(req.body);
     res.status(201).json({
