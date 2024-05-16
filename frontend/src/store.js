@@ -1,7 +1,7 @@
 import {createStore,combineReducers,applyMiddleware} from 'redux';
 import {thunk} from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension'; //so that store can use reduxdevtools
-import { newProductReducer, newReviewReducer, productDetailsReducer, productReducer } from './reducers/productReducer';
+import { adminProductReducer, newProductReducer, newReviewReducer, productDetailsReducer, productReducer } from './reducers/productReducer';
 import { forgotPasswordReducer, profileReducer, userReducer } from './reducers/userReducer';
 import { cartReducer } from './reducers/cartReducer';
 import { myOrdersReducer, newOrderReducer, orderDetailsReducer } from './reducers/orderReducer';
@@ -19,6 +19,7 @@ const reducer=combineReducers({
  orderDetails:orderDetailsReducer,
  newReview:newReviewReducer,
  newProduct:newProductReducer,
+ product:adminProductReducer,
 });
 
 //if anything in localstorage set it in cart initialstate otherwise empty

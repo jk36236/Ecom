@@ -143,6 +143,12 @@ exports.deleteProduct = catchAsyncErrors(
  if(!product){
   return next(new ErrorHandler("Product not found",404));
 }
+
+//deleteing images from cloudinary
+ for(let i=0;i<product.images.length;i++){
+   await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+ }
+
  //if found delete it
  await product.remove();
 
