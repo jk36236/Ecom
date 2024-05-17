@@ -35,6 +35,7 @@ import ProductList from './component/admin/ProductList';
 import NewProduct from './component/admin/NewProduct';
 import UpdateProduct from './component/admin/UpdateProduct';
 import OrderList from './component/admin/OrderList';
+import ProcessOrder from './component/admin/ProcessOrder';
 
 
 
@@ -105,6 +106,7 @@ function App() {
      <Route isAdmin={true} path='/admin/product' element={<NewProduct />} />
      <Route isAdmin={true} path='/admin/product/:id' element={<UpdateProduct />} />
      <Route isAdmin={true} path='/admin/orders' element={<OrderList />} />
+     <Route isAdmin={true} path='/admin/order/:id' element={<ProcessOrder />} />
 
      </Route>
 

@@ -111,10 +111,13 @@ exports.updateOrderStatus=catchAsyncErrors(
     );
    }
 
-   //if order is not delivered,set status to what we send in request and call a function which will execute once order is delivered and it will decrease the stock of the product which was in order
-   order.orderItems.forEach(async(o)=>{
-    await updateStock(o.product,o.quantity);
-   });
+   //if order is not delivered,set status to what we send in request and call a function which will execute once order is delivered and it will decrease the stock of the product which was in order ,do it only when status is shipped
+   if(req.body.status === "Shipped"){
+    order.orderItems.forEach(async(o)=>{
+      await updateStock(o.product,o.quantity);
+     });
+   }
+   
 
    order.orderStatus=req.body.status;//setting status to what we send in request
 
