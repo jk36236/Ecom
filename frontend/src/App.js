@@ -38,6 +38,7 @@ import OrderList from './component/admin/OrderList';
 import ProcessOrder from './component/admin/ProcessOrder';
 import UsersList from './component/admin/UsersList';
 import UpdateUser from './component/admin/UpdateUser';
+import ProductReviews from './component/admin/ProductReviews';
 
 
 
@@ -111,7 +112,7 @@ function App() {
      <Route isAdmin={true} path='/admin/order/:id' element={<ProcessOrder />} />
      <Route isAdmin={true} path='/admin/users' element={<UsersList />} />
      <Route isAdmin={true} path='/admin/user/:id' element={<UpdateUser />} />
-
+     <Route isAdmin={true} path='/admin/reviews' element={<ProductReviews />} />
      </Route>
 
     

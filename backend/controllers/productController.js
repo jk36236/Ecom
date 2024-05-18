@@ -284,7 +284,13 @@ exports.deleteReview=catchAsyncErrors(
       avg += rev.rating;
     });
 
-    const ratings= avg / product.reviews.length;
+    let ratings=0;
+    if(reviews.length === 0){
+      ratings=0;
+    }else{
+      ratings = avg / product.reviews.length;
+    }
+   
     const numOfReviews=reviews.length;//updating no of reviews
 
     //updating the product with new reviews,ratings and numof reviews(1 review deleted)
