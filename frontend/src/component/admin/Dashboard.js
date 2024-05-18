@@ -7,11 +7,13 @@ import {Link} from 'react-router-dom';
 import {Doughnut,Line} from 'react-chartjs-2';
 import { useSelector,useDispatch } from 'react-redux';
 import { getAdminProducts } from '../../actions/productAction';
+import { getAllOrders } from '../../actions/orderAction';
 
 
 const Dashboard = () => {
   const dispatch=useDispatch();
   const {products} =useSelector((state)=> state.products);
+  const {orders} =useSelector((state)=>state.allOrders);
 
   let outOfStock=0;
 
@@ -23,6 +25,7 @@ const Dashboard = () => {
 
   useEffect(()=>{
    dispatch(getAdminProducts());
+   dispatch(getAllOrders());
   },[dispatch]);
 
 const lineState={
@@ -72,9 +75,9 @@ const doughnutState={
 
             <Link to='/admin/orders'>
               <p>Orders</p>
-              <p>4</p>
+              <p>{orders && orders.length}</p>
             </Link>
-
+ 
             <Link to='/admin/users'>
               <p>Users</p>
               <p>2</p>
