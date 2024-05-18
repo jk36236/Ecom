@@ -42,7 +42,7 @@ const UpdateProduct = () => {
     "SmartPhones",
    ];
 
-   const productId=useParams();
+   const {productId}=useParams();
 
    useEffect(()=>{
     
