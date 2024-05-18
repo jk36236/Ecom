@@ -330,16 +330,16 @@ exports.updateUserRole=catchAsyncErrors(
 exports.deleteUser=catchAsyncErrors(
   async(req,res,next)=>{
     //find user by id 
-    const user=await User.findById(req.params.id);
-
-     //will remove cloudnary later
-
-     
+    const user=await User.findById(req.params.id);   
     if(!user){
       return next(
         new ErrorHandler(`User does not exists with Id: ${req.params.id}`,400)
       );
     }
+    const imageId=user.avatar.public_id;
+    //destroy old image
+    await cloudinary.v2.uploader.destroy(imageId);
+
 
     //if got the user, simply remove it
     await user.remove();
