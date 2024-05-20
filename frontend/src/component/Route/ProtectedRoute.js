@@ -3,10 +3,13 @@ import {useSelector} from 'react-redux';
 import {Navigate,Outlet} from 'react-router-dom';
 
 const ProtectedRoute = ({isAdmin}) => {
-  const {loading,isAuthenticated,user}=useSelector((state)=>state.user);
+  const {isAuthenticated,user}=useSelector((state)=>state.user);
 
   return(
-      isAuthenticated ? <Outlet />  : <Navigate to='/login' />
+    
+      isAuthenticated === false ? <Navigate to='/login' /> : <Outlet /> ,
+      isAdmin === true && user.role !== "admin" ?  <Navigate to='/login' /> : <Outlet />
+    
     );
 };
 

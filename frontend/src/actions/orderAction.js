@@ -61,7 +61,7 @@ export const getAllOrders=()=>async(dispatch)=>{
 };
 
 //update order --ADMIN
-export const updateOrder=(id)=>async(dispatch)=>{
+export const updateOrder=(id,order)=>async(dispatch)=>{
   try{
     dispatch({type:UPDATE_ORDER_REQUEST});
 
