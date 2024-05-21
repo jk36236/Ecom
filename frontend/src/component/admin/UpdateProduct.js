@@ -27,7 +27,7 @@ const UpdateProduct = () => {
   const [price,setPrice] =useState(0);
   const [description,setDescription]=useState("");
   const [category,setCategory]=useState("");
-  const [Stock,setStock]=useState(0);
+  const [stock,setStock]=useState(0);
   const [images,setImages]=useState([]);
   const [oldImages,setOldImages]=useState([]);
   const [imagesPreview,setImagesPreview]=useState([]);
@@ -42,18 +42,18 @@ const UpdateProduct = () => {
     "SmartPhones",
    ];
 
-   const {productId}=useParams();
+   const {id}=useParams();
 
    useEffect(()=>{
     
-    if(product && product._id !== productId){
-      dispatch(getProductDetails(productId));
+    if(product && product._id !== id){
+      dispatch(getProductDetails(id));
     }else{
       setName(product.name);
       setDescription(product.description);
       setPrice(product.price);
       setCategory(product.category);
-      setStock(product.Stock);
+      setStock(product.stock);
       setOldImages(product.images);
     }
     if(error){
@@ -71,7 +71,7 @@ const UpdateProduct = () => {
       navigate('/admin/products');
       dispatch({type:UPDATE_PRODUCT_RESET});
     }
-   },[dispatch,alert,error,navigate,isUpdated,productId,product,updateError]);
+   },[dispatch,alert,error,navigate,isUpdated,id,product,updateError]);
 
 
    const updateProductSubmitHandler=(e)=>{
@@ -82,12 +82,12 @@ const UpdateProduct = () => {
      myForm.set("price",price);
      myForm.set("description",description);
      myForm.set("category",category);
-     myForm.set("Stock",Stock);
+     myForm.set("stock",stock);
 
      images.forEach((image)=>{
       myForm.append("images",image);
      }); 
-     dispatch(updateProduct(productId,myForm));
+     dispatch(updateProduct(id,myForm));
    }
 
 
@@ -181,7 +181,7 @@ const UpdateProduct = () => {
               placeholder="Stock"
               required
               onChange={(e)=>setStock(e.target.value)}
-              value={Stock}
+              value={stock}
               />
             </div>
  

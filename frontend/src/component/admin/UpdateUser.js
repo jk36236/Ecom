@@ -16,23 +16,29 @@ import {
 import Loader from "../layout/Loader/Loader";
 import { useNavigate, useParams } from "react-router-dom";
 
+
 const UpdateUser = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const navigate=useNavigate();
+  const navigate= useNavigate();
 
   const { loading, error, user } = useSelector((state) => state.userDetails);
-  const {loading: updateLoading,error: updateError,isUpdated,} = useSelector((state) => state.profile);
+
+  const {
+    loading: updateLoading,
+    error: updateError,
+    isUpdated,
+  } = useSelector((state) => state.profile);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
 
-  const {userId} = useParams();
+  const {id} = useParams();
 
   useEffect(() => {
-    if (user && user._id !== userId) {
-      dispatch(getUserDetails(userId));
+    if (user && user._id !== id) {
+      dispatch(getUserDetails(id));
     } else {
       setName(user.name);
       setEmail(user.email);
@@ -53,7 +59,7 @@ const UpdateUser = () => {
       navigate("/admin/users");
       dispatch({ type: UPDATE_USER_RESET });
     }
-  }, [dispatch, alert, error, navigate, isUpdated, updateError, user, userId]);
+  }, [dispatch, alert, error, navigate, isUpdated, updateError, user, id]);
 
   const updateUserSubmitHandler = (e) => {
     e.preventDefault();
@@ -64,7 +70,7 @@ const UpdateUser = () => {
     myForm.set("email", email);
     myForm.set("role", role);
 
-    dispatch(updateUser(userId, myForm));
+    dispatch(updateUser(id, myForm));
   };
 
   return (

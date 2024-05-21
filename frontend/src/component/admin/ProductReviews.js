@@ -17,7 +17,7 @@ import SideBar from "./Sidebar";
 import { DELETE_REVIEW_RESET } from "../../constants/productConstants";
 import { useNavigate } from "react-router-dom";
 
-const ProductReviews = ({ history }) => {
+const ProductReviews = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate=useNavigate();
@@ -27,7 +27,7 @@ const ProductReviews = ({ history }) => {
   );
 
   const { error, reviews, loading } = useSelector(
-    (state) => state.productReviews
+    (state) => state.productreviews
   );
 
   const [productId, setProductId] = useState("");

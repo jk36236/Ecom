@@ -312,12 +312,6 @@ exports.updateUserRole=catchAsyncErrors(
       runValidators:true,
       useFindAndModify:false,
     });
-
-    if(!user){
-      return next(
-        new ErrorHandler(`User does not exists with Id: ${req.params.id}`,400)
-      );
-    }
     
     res.status(200).json({
       success:true,

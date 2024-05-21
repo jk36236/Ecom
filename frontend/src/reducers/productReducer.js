@@ -64,8 +64,8 @@ export const newProductReducer=(state={product :{}},action)=>{
   switch (action.type) {
     case NEW_PRODUCT_REQUEST :
       return{
-        loading:true,
         ...state,
+        loading:true, 
       };
       case NEW_PRODUCT_SUCCESS :
         return{
