@@ -7,7 +7,7 @@ const ProtectedRoute = ({isAdmin}) => {
 
   return(
         
-    (loading === false && isAuthenticated === false) ? <Navigate to='/login' /> : <Outlet />      
+    (loading === false && isAuthenticated === false ? <Navigate to='/login' /> : <Outlet />  )    
     );
 };
 

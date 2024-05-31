@@ -39,6 +39,8 @@ import ProcessOrder from './component/admin/ProcessOrder';
 import UsersList from './component/admin/UsersList';
 import UpdateUser from './component/admin/UpdateUser';
 import ProductReviews from './component/admin/ProductReviews';
+import Contact from "./component/layout/Contact/Contact";
+import About from "./component/layout/About/About";
 
 
 
@@ -60,12 +62,14 @@ function App() {
     google:{
     families:["Roboto","Droid Sans","Chilanka"]
     }
-
    });
 
-   //setting user in state when site loads
-   store.dispatch(loadUser());
-   getStripeApiKey();
+   //setting user in state if logged in when site loads
+   
+    store.dispatch(loadUser());
+    getStripeApiKey();
+   
+   
   },[]);
 
   return (
@@ -73,16 +77,14 @@ function App() {
      <Header />
 
      {isAuthenticated && <UserOptions user={user}/>}
-
-
-     
-     
      <Routes>
      <Route path='/' element={<Home />} /> 
      <Route path='/product/:id' element={<ProductDetails />} /> 
      <Route path='/products' element={<Products />} /> 
      <Route path='/products/:keyword' element={<Products />} /> 
      <Route path='/search' element={<Search />} />
+     <Route path="/contact" element={<Contact />} />
+     <Route path="/about" element={<About />} />
      <Route path='/login' element={<LoginSignUp />} />
 
 
