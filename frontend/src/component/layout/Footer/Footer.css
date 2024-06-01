@@ -40,7 +40,7 @@ font-size: 1.2vmax;
 .midFooter > h1{
   font-size: 4vmax;
   font-family: "Roboto";
-  color: #eb4034;
+  color:#ffdf00;
 }
 
 .midFooter > p{
@@ -73,5 +73,5 @@ font-size: 1.2vmax;
 }
 
 .rightFooter > a:hover{
-  color: #eb4034;
+  color: #ffdf00;
 }

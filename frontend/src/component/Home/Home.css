@@ -1,7 +1,8 @@
 /* ----------banner----------- */
 .banner{
-  background-image: linear-gradient(to right,#635dc0,#3027ae);
-   height: 100vmin;
+  /* background-image: linear-gradient(to right,#635dc0,#3027ae); */
+  background-image: linear-gradient(to right,#f2d621,#ffdf00);
+  height: 100vmin;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -46,8 +47,7 @@
   top: 0%;
   left: 0;
   max-width: 100%;
-  clip-path: polygon(100% 77%, 0% 100%, 100% 100%);
-
+  clip-path: ellipse(63% 23% at 53% 95%);
 }
 
 /* ---------Featured Products--------- */
@@ -105,7 +105,7 @@
 
 .productCard>span{
   margin: 0.5vmax;
-  color: tomato;
+  color: #ffdf00;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 1vmax;
 }

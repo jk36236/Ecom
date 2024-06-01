@@ -10,13 +10,13 @@
 }
 .emptyCart > svg {
   font-size: 5vmax;
-  color: tomato;
+  color: #3027ae;
 }
 .emptyCart > p {
   font-size: 2vmax;
 }
 .emptyCart > a {
-  background-color: rgb(51, 51, 51);
+  background-color: #ffdf00;
   color: white;
   border: none;
   padding: 1vmax 3vmax;
@@ -25,12 +25,15 @@
   text-decoration: none;
 }
 
+.emptyCart > a:hover{
+  background-color: tomato;
+}
 .cartPage {
   padding: 5vmax;
 }
 
 .cartHeader {
-  background-color: tomato;
+  background-color: #ffdf00;
   width: 90%;
   box-sizing: border-box;
   margin: auto;
@@ -98,7 +101,7 @@
 }
 
 .cartGrossTotalBox {
-  border-top: 3px solid tomato;
+  border-top: 3px solid #ffdf00;
   margin: 1vmax 4vmax;
   box-sizing: border-box;
   padding: 2vmax 0;
@@ -112,7 +115,7 @@
   justify-content: flex-end;
 }
 .checkOutBtn > button {
-  background-color: tomato;
+  background-color: #ffdf00;
   color: white;
   border: none;
   padding: 0.8vmax 4vmax;

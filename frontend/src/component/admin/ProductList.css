@@ -8,7 +8,7 @@
   height: 100vh;
 }
 
-.productListHeading{
+#productListHeading{
   font: 400 2rem "Roboto";
   padding: 0.5vmax;
   box-sizing: border-box;
@@ -39,17 +39,33 @@
   color: tomato;
 }
 
+.productListTable button:hover{
+  color: rgb(236,30,30);
+}
+
+.MuiDataGrid-columnHeader{
+  background-color: #ffdf00;
+}
+
+.MuiDataGrid-columnHeader div{
+  color: rgb(255,255,255); 
+}
 
 @media screen and (max-width:600px){
   .productListTable div{
     font: 300 4vw "Roboto";
   }
+
+  #productListHeading{
+    font:600 6vw "Roboto";
+    
+  }
+
+  .MuiDataGrid-columnHeader div{
+    font: 400 4vw "Roboto" !important  
+  }
+
 }
 
-.productListTable button:hover{
-  color: rgb(236,30,30);
-}
 
-.MuiDataGrid-columnHeader div{
-  color: rgb(255,255,255);
-}
+

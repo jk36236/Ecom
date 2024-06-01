@@ -5,11 +5,11 @@ import { FaSearch, FaShoppingCart} from 'react-icons/fa';
 import { BiSolidUserRectangle } from "react-icons/bi";
 
 const options={
-  burgerColorHover:"#a62d24",
+  burgerColorHover:'#3027ae',
    logo,
    logoWidth:"20vmax",
    logoHoverSize:"10px",
-   logoHoverColor:"#eb4034",
+   logoHoverColor:"#ffdf00",
 
    navColor1:"white",
 
@@ -31,7 +31,7 @@ const options={
    nav3justifyContent:"flex-start",
    nav4justifyContent:"flex-start",
 
-   link1ColorHover:"#eb4034",
+   link1ColorHover:"#ffdf00",
    link1Margin:"1vmax",
    profileIconUrl:"/login",
    
@@ -47,9 +47,9 @@ const options={
    cartIconColor: "rgba(35, 35, 35,0.8)",
    profileIconColor: "rgba(35, 35, 35,0.8)",
 
-   searchIconColorHover: "#eb4034",
-   cartIconColorHover: "#eb4034",
-   profileIconColorHover: "#eb4034",
+   searchIconColorHover: "#ffdf00",
+   cartIconColorHover: "#ffdf00",
+   profileIconColorHover: "#ffdf00",
    cartIconMargin:"1vmax",
 
 }

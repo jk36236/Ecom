@@ -12,6 +12,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 5vmax;
+  margin-left:5vmax;
   justify-content: center;
   min-height: 40vh;
 }
@@ -59,7 +60,7 @@
 }
 
 .pageItemActive{
-  background-color:tomato;
+  background-color:#ffdf00;
 }
 
 .pageLinkActive{
@@ -90,7 +91,7 @@
   transition: all 0.5s; 
 }
 .category-link:hover{
-  color: tomato;
+  color: #ffdf00;
 }
 
 /* ratings*/

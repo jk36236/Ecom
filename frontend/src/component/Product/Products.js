@@ -23,7 +23,7 @@ const categories=[
  "SmartPhones",
 ];
 
-const Products = ({match}) => {
+const Products = () => {
   const dispatch=useDispatch();
   const alert=useAlert();
   
@@ -80,6 +80,7 @@ const priceHandler=(event,newPrice)=>{
                         aria-labelledby='range-slider'
                         min={0}
                         max={25000}
+                        
                       />
           
                       {/* categories */}

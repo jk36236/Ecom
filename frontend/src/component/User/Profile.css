@@ -39,7 +39,7 @@ transform: scale(1.05);
 
 .profileContainer>div:first-child>a{
   border: none;
-  background-color: tomato;
+  background-color: #ffdf00;
   font: 400 1vmax "Roboto";
   color: white;
   text-decoration: none;
