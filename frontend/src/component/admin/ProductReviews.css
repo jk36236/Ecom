@@ -51,6 +51,10 @@
     border-left: none;
     border-top: 1px solid rgba(0, 0, 0, 0.158);
   }
+
+  .productReviewsFormHeading{
+    font:600 6vw "Roboto";
+    }
   .productReviewsForm > div > input {
     padding: 2.5vmax 5vmax;
     font: 300 1.7vmax cursive;

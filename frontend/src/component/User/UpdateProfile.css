@@ -99,7 +99,7 @@ align-items: center;
 
 .updateProfileBtn{
   border: none;
-  background-color: tomato;
+  background-color: #ffdf00;
   color: white;
   font: 300 0.9vmax "Roboto";
   width: 100%;

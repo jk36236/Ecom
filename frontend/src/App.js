@@ -45,6 +45,7 @@ import About from "./component/layout/About/About";
 
 
 
+
 function App() {
 
   const {isAuthenticated,user} =useSelector(state=>state.user);
@@ -77,6 +78,13 @@ function App() {
      <Header />
 
      {isAuthenticated && <UserOptions user={user}/>}
+
+     {stripeApiKey && (
+        <Elements stripe={loadStripe(stripeApiKey)}> 
+          <ProtectedRoute path='/process/payment' element={<Payment />} />
+           </Elements>
+     )}
+
      <Routes>
      <Route path='/' element={<Home />} /> 
      <Route path='/product/:id' element={<ProductDetails />} /> 
@@ -98,13 +106,7 @@ function App() {
      <Route path='/orders' element={<MyOrders />} />
      <Route path='/order/confirm' element={<ConfirmOrder/>} />
      <Route path='/order/:id' element={<OrderDetails />} />
-     {stripeApiKey && (
-        <Route path='/process/payment' element={
-          <Elements stripe={loadStripe(stripeApiKey)}> 
-           <Payment />
-           </Elements>
-      } />
-     )};
+     
       {/* -----------admin routes------------- */}
      <Route isAdmin={true} path='/admin/dashboard' element={<Dashboard />} />
      <Route isAdmin={true} path='/admin/products' element={<ProductList />} />
@@ -125,8 +127,8 @@ function App() {
      <Route path='/password/forgot' element={<ForgotPassword />}  />
      <Route path='/password/reset/:token' element={<ResetPassword />}  />
      <Route path='/cart' element={<Cart />} />
-
-
+     
+  
      </Routes>
      <Footer />
     </Router>

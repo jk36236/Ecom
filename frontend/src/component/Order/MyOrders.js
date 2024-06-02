@@ -6,7 +6,6 @@ import Loader from '../layout/Loader/Loader';
 import { Link } from 'react-router-dom';
 import { useAlert } from 'react-alert'; 
 import './MyOrders.css';
-import { Typography } from '@material-ui/core';
 import MetaData from '../layout/MetaData';
 import LaunchIcon from '@material-ui/icons/Launch';
 
@@ -27,7 +26,7 @@ const MyOrders = () => {
        return params.getValue(params.id,"status") === "Delivered" ? "greenColor": "redColor";
     },
   },
-    {field:"itemsQty",headerName:"Items Qty",type:"number",minWidth:150,flex:0.3},
+    {field:"itemsQty",headerName:"Items Qty",type:"number",minWidth:180,flex:0.3},
     {field:"amount",headerName:"Amount",type:"number",minWidth:230,flex:0.4},
     {field:"actions",headerName:"Actions",flex:0.3,minWidth:130,type:"number",sortable:false,
      renderCell:(params)=>{
@@ -81,7 +80,8 @@ const MyOrders = () => {
            autoHeight
          />
          
-        <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
+      <p id="myOrdersHeading">{user.name}'s Orders</p>
+
        </div>
       )}
     </Fragment>
