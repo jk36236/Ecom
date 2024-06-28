@@ -14,13 +14,13 @@ import MetaData from '../layout/MetaData';
 
 
 const categories=[
- "Laptop",
- "Footwear",
- "Bottom",
- "Tops",
- "Attire",
- "Camera",
- "SmartPhones",
+ "laptop",
+ "footwear",
+ "bottom",
+ "tops",
+ "attire",
+ "camera",
+ "smartphones",
 ];
 
 const Products = () => {

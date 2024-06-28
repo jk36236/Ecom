@@ -66,12 +66,11 @@ function App() {
    });
 
    //setting user in state if logged in when site loads
-   
+   if(isAuthenticated === true){
     store.dispatch(loadUser());
     getStripeApiKey();
-   
-   
-  },[]);
+   }
+  },[isAuthenticated]);
 
   return (
     <Router>

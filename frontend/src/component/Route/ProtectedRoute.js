@@ -5,10 +5,17 @@ import {Navigate,Outlet} from 'react-router-dom';
 const ProtectedRoute = ({isAdmin}) => {
   const {loading,isAuthenticated,user}=useSelector((state)=>state.user);
 
+  // if(isAdmin === true){
+  //   return (
+  //    user.role !== 'admin' ? <Navigate to='/login' /> : <Outlet />
+  //   )
+  // }
+
   return(
-        
-    (loading === false && isAuthenticated === false ? <Navigate to='/login' /> : <Outlet />  )    
-    );
+ (!loading &&
+     isAuthenticated === true ? <Outlet /> : <Navigate to='/login' /> 
+ )
+      );
 };
 
 export default ProtectedRoute
