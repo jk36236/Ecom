@@ -3,6 +3,9 @@
   scroll-behavior: smooth;
  }
 
+ body{
+  cursor: url("./images/cursor.png"), auto;
+ }
  /* ------for hiding input navigation button---------- */
  /*chrome,safari,edge,opera*/
  input::-webkit-outer-spin-button,

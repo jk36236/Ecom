@@ -41,7 +41,7 @@ import UpdateUser from './component/admin/UpdateUser';
 import ProductReviews from './component/admin/ProductReviews';
 import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
-
+import NotFound from './component/layout/NotFound/NotFound';
 
 
 
@@ -65,11 +65,12 @@ function App() {
     }
    });
 
-   //setting user in state if logged in when site loads    
-   
-    store.dispatch(loadUser());
+   //setting user in state if logged in when site loads   
+   store.dispatch(loadUser()); 
+
+  
     getStripeApiKey();
-    
+   
      
   },[]);
 
@@ -129,7 +130,11 @@ function App() {
      <Route path='/password/reset/:token' element={<ResetPassword />}  />
      <Route path='/cart' element={<Cart />} />
      
-  
+     <Route path="*"
+          element={
+            window.location.pathname === "/process/payment" ? null : <NotFound />
+          }
+        />
      </Routes>
      <Footer />
     </Router>

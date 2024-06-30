@@ -44,7 +44,8 @@ const Dashboard = () => {
   },[dispatch]);
 
   let totalAmount=0;
-  orders && orders.forEach((item)=>{
+  orders && 
+      orders.forEach((item)=>{
     totalAmount += item.totalPrice;
   });
 
@@ -83,7 +84,7 @@ const doughnutState={
         <div className='dashboardSummary'>
           <div>
             <p>
-              Total Amount <br /> Rs.2000
+              Total Amount <br /> Rs.{totalAmount}
             </p>
           </div>
 {/* box2 */}
