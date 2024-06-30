@@ -99,27 +99,27 @@ function App() {
 
 
      {/* --------protected routes--------- */}
-     {/* <Route element={<ProtectedRoute />}> */}
-     <Route path='/account' element={<Profile />}/> 
-     <Route path='/me/update' element={<UpdateProfile />}/>
-     <Route path='/password/update' element={<UpdatePassword />}  />
-     <Route path='/shipping' element={<Shipping />} />
-     <Route path='/success' element={<OrderSuccess />} />
-     <Route path='/orders' element={<MyOrders />} />
-     <Route path='/order/confirm' element={<ConfirmOrder/>} />
-     <Route path='/order/:id' element={<OrderDetails />} />
+     <Route element={<ProtectedRoute />}>
+     <Route path='/account' element={ <Profile />}/> 
+     <Route path='/me/update' element={<UpdateProfile /> }/>
+     <Route path='/password/update' element={ <UpdatePassword /> }  />
+     <Route path='/shipping' element={<Shipping /> } />
+     <Route path='/success' element={<OrderSuccess /> } />
+     <Route path='/orders' element={ <MyOrders /> } />
+     <Route path='/order/confirm' element={ <ConfirmOrder/> } />
+     <Route path='/order/:id' element={<OrderDetails /> } />
      
       {/* -----------admin routes------------- */}
-     <Route isAdmin={true} path='/admin/dashboard' element={<Dashboard />} />
-     <Route isAdmin={true} path='/admin/products' element={<ProductList />} />
-     <Route isAdmin={true} path='/admin/product' element={<NewProduct />} />
+     <Route isAdmin={true} path='/admin/dashboard' element={<Dashboard /> } />
+     <Route isAdmin={true} path='/admin/products' element={<ProductList /> } />
+     <Route isAdmin={true} path='/admin/product' element={<NewProduct /> } />
      <Route isAdmin={true} path='/admin/product/:id' element={<UpdateProduct />} />
      <Route isAdmin={true} path='/admin/orders' element={<OrderList />} />
-     <Route isAdmin={true} path='/admin/order/:id' element={<ProcessOrder />} />
-     <Route isAdmin={true} path='/admin/users' element={<UsersList />} />
-     <Route isAdmin={true} path='/admin/user/:id' element={<UpdateUser />} />
-     <Route isAdmin={true} path='/admin/reviews' element={<ProductReviews />} />
-     {/* </Route> */}
+     <Route isAdmin={true} path='/admin/order/:id' element={<ProcessOrder /> } />
+     <Route isAdmin={true} path='/admin/users' element={<UsersList /> } />
+     <Route isAdmin={true} path='/admin/user/:id' element={<UpdateUser /> } />
+     <Route isAdmin={true} path='/admin/reviews' element={<ProductReviews /> } />
+     </Route>
 
     
      
