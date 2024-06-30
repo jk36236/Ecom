@@ -108,18 +108,18 @@ function App() {
      <Route path='/orders' element={ <MyOrders /> } />
      <Route path='/order/confirm' element={ <ConfirmOrder/> } />
      <Route path='/order/:id' element={<OrderDetails /> } />
-     
-      {/* -----------admin routes------------- */}
-     <Route isAdmin={true} path='/admin/dashboard' element={<Dashboard /> } />
-     <Route isAdmin={true} path='/admin/products' element={<ProductList /> } />
-     <Route isAdmin={true} path='/admin/product' element={<NewProduct /> } />
-     <Route isAdmin={true} path='/admin/product/:id' element={<UpdateProduct />} />
-     <Route isAdmin={true} path='/admin/orders' element={<OrderList />} />
-     <Route isAdmin={true} path='/admin/order/:id' element={<ProcessOrder /> } />
-     <Route isAdmin={true} path='/admin/users' element={<UsersList /> } />
-     <Route isAdmin={true} path='/admin/user/:id' element={<UpdateUser /> } />
-     <Route isAdmin={true} path='/admin/reviews' element={<ProductReviews /> } />
      </Route>
+      {/* -----------admin routes------------- */}
+     <Route  path='/admin/dashboard' element={<ProtectedRoute adminRoute={true} ><Dashboard /></ProtectedRoute> } />
+     <Route  path='/admin/products' element={<ProtectedRoute adminRoute={true} ><ProductList /></ProtectedRoute> } />
+     <Route  path='/admin/product' element={<ProtectedRoute adminRoute={true} ><NewProduct /> </ProtectedRoute>} />
+     <Route  path='/admin/product/:id' element={<ProtectedRoute adminRoute={true}><UpdateProduct /></ProtectedRoute>} />
+     <Route  path='/admin/orders' element={<ProtectedRoute adminRoute={true}><OrderList /></ProtectedRoute>} />
+     <Route  path='/admin/order/:id' element={<ProtectedRoute adminRoute={true} ><ProcessOrder /></ProtectedRoute> } />
+     <Route  path='/admin/users' element={<ProtectedRoute adminRoute={true} ><UsersList /></ProtectedRoute> } />
+     <Route  path='/admin/user/:id' element={<ProtectedRoute adminRoute={true} ><UpdateUser /></ProtectedRoute> } />
+     <Route  path='/admin/reviews' element={<ProtectedRoute adminRoute={true} ><ProductReviews /></ProtectedRoute> } />
+    
 
     
      
