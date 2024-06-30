@@ -155,7 +155,7 @@ exports.resetPassword=catchAsyncErrors(
     }
 
 //if passwords does not match
-    if(req.body.password !==req.body.confirmPassword){
+    if(req.body.password !== req.body.confirmPassword){
       return next(
        new ErrorHandler("Password does not match confirm Password",400)
       );
@@ -230,9 +230,9 @@ exports.updateProfile=catchAsyncErrors(
     const newUserData={
       name:req.body.name,
       email:req.body.email,
-    }
+    };
     //pswrd update ke liye alag route h
-    // -------------cloudnary ----------
+    // -------------cloudinary ----------
     if(req.body.avatar !== ""){
       const user=await User.findById(req.user.id);
       const imageId=user.avatar.public_id;
@@ -245,26 +245,26 @@ exports.updateProfile=catchAsyncErrors(
       });
 
       //adding avatar details in newUserData
-      newUserData.avatar={
-        public_id:myCloud.public_id,
-        url:myCloud.secure_url,
-      }
+      newUserData.avatar = {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      };
 
     }
+    
     // ----------------------------------------
-
-    //find user by id and update
-    const user=await User.findByIdAndUpdate(req.user.id,newUserData,{
+         //find user by id and update
+    const user = await User.findByIdAndUpdate(req.user.id,newUserData,{
       new:true,
       runValidators:true,
       useFindAndModify:false,
     });
+   
     
     res.status(200).json({
       success:true,
     });
-  }
-);
+  });
 
 
 // -----------------GET ALL USERS(admin)-------------

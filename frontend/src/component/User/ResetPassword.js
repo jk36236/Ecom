@@ -19,7 +19,7 @@ const ResetPassword = () => {
   const{error,success,loading} =useSelector((state)=>state.forgotPassword);
   const{token}=useParams();
  
-  const[Password,setPassword]=useState("");
+  const[password,setPassword]=useState("");
   const[confirmPassword,setConfirmPassword]=useState("");
 
   
@@ -27,7 +27,7 @@ const ResetPassword = () => {
     e.preventDefault();
    
     const myForm=new FormData();
-    myForm.set("Password",Password);
+    myForm.set("password",password);
     myForm.set("confirmPassword",confirmPassword);
     dispatch(resetPassword(token,myForm));
    };
@@ -66,7 +66,7 @@ const ResetPassword = () => {
                  type="password"
                  placeholder='New Password'
                  required
-                 value={Password}
+                 value={password}
                  onChange={(e)=>setPassword(e.target.value)}
                 />
   </div>

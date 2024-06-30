@@ -37,7 +37,7 @@ const UpdateProfile = () => {
   
   
    const updateProfileDataChange=(e)=>{
-     const reader=new FileReader();//because hume 1 file ead krni h
+     const reader=new FileReader();//because hume 1 file read krni h
      reader.onload=()=>{
       if(reader.readyState === 2){
         setAvatarPreview(reader.result);

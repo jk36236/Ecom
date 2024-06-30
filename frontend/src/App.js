@@ -65,12 +65,14 @@ function App() {
     }
    });
 
-   //setting user in state if logged in when site loads
-   if(isAuthenticated === true){
+   //setting user in state if logged in when site loads    
+   
     store.dispatch(loadUser());
     getStripeApiKey();
-   }
-  },[isAuthenticated]);
+    
+     
+  },[]);
+
 
   return (
     <Router>
@@ -96,7 +98,7 @@ function App() {
 
 
      {/* --------protected routes--------- */}
-     <Route element={<ProtectedRoute />}>
+     {/* <Route element={<ProtectedRoute />}> */}
      <Route path='/account' element={<Profile />}/> 
      <Route path='/me/update' element={<UpdateProfile />}/>
      <Route path='/password/update' element={<UpdatePassword />}  />
@@ -116,7 +118,7 @@ function App() {
      <Route isAdmin={true} path='/admin/users' element={<UsersList />} />
      <Route isAdmin={true} path='/admin/user/:id' element={<UpdateUser />} />
      <Route isAdmin={true} path='/admin/reviews' element={<ProductReviews />} />
-     </Route>
+     {/* </Route> */}
 
     
      
