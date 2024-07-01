@@ -5,7 +5,8 @@ import { FaSearch, FaShoppingCart} from 'react-icons/fa';
 import { BiSolidUserRectangle } from "react-icons/bi";
 
 const options={
-  burgerColorHover:'#3027ae',
+   burgerColor:"#ffffff",
+   burgerColorHover:'#f2d621',
    logo,
    logoWidth:"20vmax",
    logoHoverSize:"10px",

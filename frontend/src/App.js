@@ -65,10 +65,9 @@ function App() {
     }
    });
 
-   //setting user in state if logged in when site loads   
+   //setting user in state if logged in when site loads 
+   
    store.dispatch(loadUser()); 
-
-  
     getStripeApiKey();
    
      

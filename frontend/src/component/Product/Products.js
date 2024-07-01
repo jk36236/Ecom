@@ -14,13 +14,13 @@ import MetaData from '../layout/MetaData';
 
 
 const categories=[
- "laptop",
- "footwear",
- "bottom",
- "tops",
- "attire",
- "camera",
- "smartphones",
+ "Laptop",
+ "Footwear",
+ "Bottom",
+ "Tops",
+ "Attire",
+ "Camera",
+ "SmartPhones",
 ];
 
 const Products = () => {
@@ -28,7 +28,7 @@ const Products = () => {
   const alert=useAlert();
   
   const[currentPage,setCurrentPage]=useState(1);
-  const[price,setPrice]=useState([0,25000]);
+  const[price,setPrice]=useState([0,200000]);
   const[category,setCategory]=useState("");
   const[ratings,setRatings]=useState(0);
  
@@ -79,7 +79,7 @@ const priceHandler=(event,newPrice)=>{
                         valueLabelDisplay="auto"
                         aria-labelledby='range-slider'
                         min={0}
-                        max={25000}
+                        max={200000}
                         
                       />
           
