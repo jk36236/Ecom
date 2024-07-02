@@ -52,6 +52,8 @@ function App() {
 
   const {isAuthenticated,user} =useSelector(state=>state.user);
   const [stripeApiKey,setStripeApiKey]=useState("");
+
+  
  
   //getting stripe api key from backend
    async function getStripeApiKey(){
@@ -88,11 +90,7 @@ function App() {
 
      {isAuthenticated && <UserOptions user={user}/>}
 
-     {stripeApiKey && (
-        <Elements stripe={loadStripe(stripeApiKey)}> 
-          <ProtectedRoute path='/process/payment' element={<Payment />} />
-           </Elements>
-     )}
+   
 
      <Routes>
      <Route path='/' element={<Home />} /> 
@@ -127,7 +125,15 @@ function App() {
      <Route  path='/admin/user/:id' element={<ProtectedRoute adminRoute={true} ><UpdateUser /></ProtectedRoute> } />
      <Route  path='/admin/reviews' element={<ProtectedRoute adminRoute={true} ><ProductReviews /></ProtectedRoute> } />
     
-
+     {stripeApiKey && (
+        
+        <Route path='/process/payment' element={<ProtectedRoute>
+          <Elements stripe={loadStripe(stripeApiKey)}> 
+          <Payment />
+          </Elements>
+          </ProtectedRoute>} />
+         
+   )}
     
      
 
@@ -137,11 +143,7 @@ function App() {
      <Route path='/password/reset/:token' element={<ResetPassword />}  />
      <Route path='/cart' element={<Cart />} />
      
-     <Route path="*"
-          element={
-            window.location.pathname === "/process/payment" ? null : <NotFound />
-          }
-        />
+      <Route path="*" element={ <NotFound /> }/> 
      </Routes>
      <Footer />
     </Router>

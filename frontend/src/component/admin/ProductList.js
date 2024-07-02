@@ -102,6 +102,7 @@ const deleteProductHandler=(id)=>{
          autoHeight
         />
     </div>
+   
   </div>
 </Fragment>  )
 }

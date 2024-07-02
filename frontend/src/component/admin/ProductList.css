@@ -43,6 +43,8 @@
   color: rgb(236,30,30);
 }
 
+
+
 .MuiDataGrid-columnHeader{
   background-color: #ffdf00;
 }
@@ -50,6 +52,8 @@
 .MuiDataGrid-columnHeader div{
   color: rgb(255,255,255); 
 }
+
+
 
 @media screen and (max-width:600px){
   .productListTable div{
@@ -64,6 +68,7 @@
   .MuiDataGrid-columnHeader div{
     font: 400 4vw "Roboto" !important  
   }
+ 
 
 }
 
