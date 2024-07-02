@@ -51,6 +51,7 @@ Make Sure to Create a config.env file in backend/config directory and add approp
 ## Login Credentials
 
 [](https://github.com/jk36236/Ecom/tree/master#login-credentials)Login using below credentials or you can use your own gmail for login. Admin credentials are also given, please don't make any changes just use it for exploring admin routes only!!
+
 **User**
 Gmail - testuser123@gmail.com
 password - 12345678
@@ -67,13 +68,13 @@ cvv - XYZ [any]
 
 1)If you want to use another card, then use only india specific cards. 
       Go  [here](https://docs.stripe.com/testing) for more card details.
+
 2)You can use any expiry date like 12/25,11/28   ..etc .Just make sure that the month and year should be greater then current month/year.
 12/23- not acceptible  because its 2024.
+
 3)CVV - use any 3 digits.
 
-## Author
 
-[](https://github.com/jk36236/Ecom/tree/master#author)
 
- **LinkedIn**  Click  [Here](https://in.linkedin.com/in/[jatin-kumar-a78405184](https://www.linkedin.com/in/jatin-kumar-a78405184/))  **@jatin**  
- **Twitter**  Click  [Here](https://twitter.com/-[@JatinKalia15](https://twitter.com/JatinKalia15))  **@JatinKalia15**
+
+   
