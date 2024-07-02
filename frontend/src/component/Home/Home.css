@@ -1,7 +1,6 @@
 /* ----------banner----------- */
 .banner{
-  /* background-image: linear-gradient(to right,#f2d621,#ffdf00); */
-  background-image: url("../../images/cover.jfif");
+  background-image: url("../../images/cover1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

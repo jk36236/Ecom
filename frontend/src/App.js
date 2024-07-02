@@ -80,8 +80,8 @@ function App() {
      getStripeApiKey();
   },[]);
 
-  
-   
+  //disable right click
+  window.addEventListener("contextmenu",(e)=> e.preventDefault()); 
  
 
   return (

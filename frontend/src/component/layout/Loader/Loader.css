@@ -12,8 +12,7 @@
 .loading > div{
 width: 10vmax;
 height: 10vmax;
-/* border-bottom: 5px solid rgba(0,0,0,0.719); */
-border-bottom: 5px solid #ffdf00;
+border-bottom: 5px solid rgba(0,0,0,0.719);
 border-radius: 50%;
 animation:loadingRoute 800ms linear infinite;
 }
