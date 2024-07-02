@@ -11,13 +11,15 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
 import { getAllUsers, clearErrors, deleteUser } from "../../actions/userAction";
 import { DELETE_USER_RESET } from "../../constants/userConstants";
+import Loader from '../layout/Loader/Loader';
+
 
 const UsersList = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate=useNavigate();
 
-  const { error, users } = useSelector((state) => state.allUsers);
+  const {loading, error, users } = useSelector((state) => state.allUsers);
   const {error: deleteError,isDeleted,message,} = useSelector((state) => state.profile);
 
   const deleteUserHandler = (id) => {
@@ -114,7 +116,10 @@ const UsersList = () => {
   return (
     <Fragment>
       <MetaData title={`ALL USERS - Admin`} />
-
+      {loading ?
+       (
+       <Loader />
+       ):(
       <div className="dashboard">
         <SideBar />
         <div className="productListContainer">
@@ -131,6 +136,7 @@ const UsersList = () => {
           />
         </div>
       </div>
+       )}
     </Fragment>
   );
 };
