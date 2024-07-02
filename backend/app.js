@@ -3,12 +3,15 @@ const app= express();
 const cookieParser=require('cookie-parser');
 const bodyParser=require("body-parser");
 const fileUpload=require("express-fileupload");
-const dotenv=require('dotenv');
-
+const path= require('path');
 
 const errorMiddleware=require('./middleware/error');
 
-dotenv.config({path:"backend/config/config.env"});
+// config - path of dotenv file
+if(process.env.NODE_ENV !== "PRODUCTION"){
+  require('dotenv').config({path:"backend/config/config.env"});
+  }
+  
 
 app.use(cookieParser());
 app.use(bodyParser.json({ limit: '100mb' }));
@@ -28,6 +31,13 @@ app.use("/api/v1",product);
 app.use("/api/v1",user);
 app.use("/api/v1",order);
 app.use("/api/v1",payment);
+
+//frontend 
+app.use(express.static(path.join(__dirname,"../frontend/build")));
+
+app.get("*",(req,res)=>{
+  res.sendFile(path.resolve(__dirname,"../frontend/build/index.html"));
+});
 
 //middleware for errors
 app.use(errorMiddleware);
