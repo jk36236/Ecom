@@ -18,6 +18,8 @@ import { useSelector,useDispatch } from 'react-redux';
 import { getAdminProducts } from '../../actions/productAction';
 import { getAllOrders } from '../../actions/orderAction';
 import { getAllUsers } from '../../actions/userAction';
+import MetaData from '../layout/MetaData';
+
 
 
 const Dashboard = () => {
@@ -73,7 +75,10 @@ const doughnutState={
 }
 
 
+
   return (
+    <>
+    <MetaData title="Dashboard"/>
     <div className='dashboard'>
       <Sidebar />
 
@@ -122,6 +127,7 @@ const doughnutState={
 
       </div>
     </div>
+    </>
   )
 }
 

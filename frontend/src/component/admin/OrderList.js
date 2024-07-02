@@ -30,26 +30,6 @@ const OrderList = () => {
     dispatch(deleteOrder(id));
   };
 
-  useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-
-    if (deleteError) {
-      alert.error(deleteError);
-      dispatch(clearErrors());
-    }
-
-    if (isDeleted) {
-      alert.success("Order Deleted Successfully");
-      navigate("/admin/orders");
-      dispatch({ type: DELETE_ORDER_RESET });
-    }
-
-    dispatch(getAllOrders());
-  }, [dispatch, alert, error, deleteError, navigate, isDeleted]);
-
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },
 
@@ -118,6 +98,27 @@ const OrderList = () => {
         status: item.orderStatus,
       });
     });
+
+
+    useEffect(() => {
+      if (error) {
+        alert.error(error);
+        dispatch(clearErrors());
+      }
+  
+      if (deleteError) {
+        alert.error(deleteError);
+        dispatch(clearErrors());
+      }
+  
+      if (isDeleted) {
+        alert.success("Order Deleted Successfully");
+        navigate("/admin/orders");
+        dispatch({ type: DELETE_ORDER_RESET });
+      }
+  
+      dispatch(getAllOrders());
+    }, [dispatch, alert, error, deleteError, navigate, isDeleted]);
 
   return (
     <Fragment>

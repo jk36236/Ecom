@@ -6,6 +6,8 @@ import {addItemsToCart,removeItemsFromCart} from '../../actions/cartAction'
 import {Typography} from '@material-ui/core'
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import {Link,useNavigate} from "react-router-dom"
+import MetaData from '../layout/MetaData'
+
 
 const Cart = () => {
  const dispatch=useDispatch();
@@ -40,6 +42,7 @@ const Cart = () => {
 
   return (
   <Fragment>
+    <MetaData title="CART" />
     {cartItems.length === 0 ? (
       // when cart is empty
       <div className='emptyCart'>

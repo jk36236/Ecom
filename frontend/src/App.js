@@ -46,15 +46,23 @@ import NotFound from './component/layout/NotFound/NotFound';
 
 
 
+
+
 function App() {
 
   const {isAuthenticated,user} =useSelector(state=>state.user);
   const [stripeApiKey,setStripeApiKey]=useState("");
  
   //getting stripe api key from backend
-  async function getStripeApiKey(){
-    const {data}=await axios.get('/api/v1/stripeapikey');
-    setStripeApiKey(data.stripeApiKey);
+   async function getStripeApiKey(){
+    try{
+      const {data}=await axios.get('/api/v1/stripeapikey');
+      setStripeApiKey(data.stripeApiKey);
+    }
+   catch(error){
+    console.log(error.response.data);
+   }
+    
   }
 
   //downloading font before page load
@@ -63,16 +71,16 @@ function App() {
     google:{
     families:["Roboto","Droid Sans","Chilanka"]
     }
-   });
-
+   });  
+   
    //setting user in state if logged in when site loads 
-   
    store.dispatch(loadUser()); 
-    getStripeApiKey();
-   
-     
+     getStripeApiKey();
   },[]);
 
+  
+   
+ 
 
   return (
     <Router>

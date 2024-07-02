@@ -3,11 +3,15 @@ import "./About.css";
 import { Button, Typography, Avatar } from "@material-ui/core";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
+import MetaData from "../MetaData";
+
 const About = () => {
   const visitGithub = () => {
     window.location = "https://github.com/jk36236";
   };
   return (
+    <>
+    <MetaData title="ABOUT" />
     <div className="aboutSection">
       <div></div>
       <div className="aboutSectionGradient"></div>
@@ -44,6 +48,7 @@ const About = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
