@@ -28,7 +28,6 @@ const Dashboard = () => {
   const {products} =useSelector((state)=> state.products);
   const {orders} =useSelector((state)=>state.allOrders);
   const {users } = useSelector((state) => state.allUsers);
-  const {user} =useSelector((state)=>state.user);
 
 
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement,ArcElement, Title, Tooltip, Legend);
@@ -128,7 +127,6 @@ const doughnutState={
       </div>
 
       </div>
-      <p id="dashboardFooter">{user.name}'s Dashboard</p>
     </div>
     </>
   )
