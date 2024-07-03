@@ -32,13 +32,19 @@ app.use("/api/v1",user);
 app.use("/api/v1",order);
 app.use("/api/v1",payment);
 
-//frontend 
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+// ------deployment-------------
+const __dirname1 = __dirname;
+if(process.env.NODE_ENV === "PRODUCTION"){
+app.use(express.static(path.join(__dirname1, "../frontend/build")));
 
 app.get("*",(req,res)=>{
-  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+  res.sendFile(path.resolve(__dirname1, "../frontend/build/index.html"));
 });
-
+}else{
+  app.get("/",(req,res)=>{
+    res.send("Hey!,API is running..");
+    })
+}
 
 //middleware for errors
 app.use(errorMiddleware);
